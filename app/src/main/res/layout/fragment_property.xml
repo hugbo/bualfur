@@ -5,85 +5,100 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp">
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/property_address"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/property_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/property_zipcode"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_address"/>
 
-    <EditText
-        android:id="@+id/property_zipcode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/property_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/property_city"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_zipcode"/>
 
-    <EditText
-        android:id="@+id/property_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/property_zipcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/property_price"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_city"/>
 
-    <EditText
-        android:id="@+id/property_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/property_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/property_size"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_price"/>
 
-    <EditText
-        android:id="@+id/property_size"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/property_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/property_bedrooms"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_size"/>
 
-    <EditText
-        android:id="@+id/property_bedrooms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/property_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/property_bathrooms"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_bedrooms"/>
 
-    <EditText
-        android:id="@+id/property_bathrooms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/property_bedrooms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/create_property_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_bathrooms"/>
+
+            <EditText
+                android:id="@+id/property_bathrooms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/save_property_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_save" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>
