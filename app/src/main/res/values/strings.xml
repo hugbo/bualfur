@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Bualfur</string>
+    <string name="property_address">Enter address:</string>
+    <string name="property_zipcode">Enter zipcode:</string>
+    <string name="property_city">Enter city:</string>
+    <string name="property_price">Enter price:</string>
+    <string name="property_size">Enter size:</string>
+    <string name="property_bedrooms">Enter number of bedrooms:</string>
+    <string name="property_bathrooms">Enter number of bathrooms:</string>
+    <string name="property_type">Enter type of property:</string>
 </resources>
