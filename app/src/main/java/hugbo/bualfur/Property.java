@@ -19,10 +19,10 @@ public class Property {
     private int mNumBathrooms;
     private String mPropertyType;
 
-    public Property(UUID id, String address, int zipcode, String city,
+    public Property(String address, int zipcode, String city,
                     int price, int size, double lat, double lon,
                     int numBedrooms, int numBathroooms, String propertyType) {
-        mId = id;
+        mId = UUID.randomUUID();
         mAddress = address;
         mZipcode = zipcode;
         mCity = city;

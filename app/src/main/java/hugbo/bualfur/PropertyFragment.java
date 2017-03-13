@@ -29,7 +29,7 @@ public class PropertyFragment extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Property to be edited/created
-        mProperty = new Property(null, null, 0, null, 0, 0, 0, 0, 0, 0, null);
+        mProperty = new Property(null, 0, null, 0, 0, 0, 0, 0, 0, null);
     }
 
     @Override
