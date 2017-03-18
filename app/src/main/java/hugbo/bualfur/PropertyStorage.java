@@ -7,11 +7,16 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -24,6 +29,9 @@ public class PropertyStorage {
     private ArrayList<Property> mProperties;
     private boolean testing = true;
     private Context mCtx;
+    private String developmentURL = "http://192.168.0.101:3000/properties/search";
+    private String productionURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/search";
+
 
     public static PropertyStorage get(Context context){
         if (sPropertyStorage == null){
@@ -62,6 +70,9 @@ public class PropertyStorage {
     }
 
     public ArrayList<Property> getProperties(){
+        for (Property property : mProperties){
+            Log.i("LEL", "getProperties: "+property.getmAddress());
+        }
         return mProperties;
     }
 
@@ -80,32 +91,78 @@ public class PropertyStorage {
 
         if(data == null){
             // Use dummy properties
-            Property tmpProp = new Property("Smyrlahraun 50", 201, "Hafnarfjörður", 60, 60, 500, 50, 1, 1, "Einbýlishús");
+            Property tmpProp = new Property("1","Smyrlahraun 50", 201, "Hafnarfjörður", 60, 60, 500, 50, 1, 1, "Einbýlishús");
             mProperties.add(tmpProp);
-            tmpProp = new Property("Gunnlaugsstræti 33", 105, "Reykjavík", 60, 60, 800, 70, 2, 1, "Einbýlishús");
+            tmpProp = new Property("2","Gunnlaugsstræti 33", 105, "Reykjavík", 60, 60, 800, 70, 2, 1, "Einbýlishús");
             mProperties.add(tmpProp);
-            tmpProp = new Property("Gerðargata 12", 101, "Reykjavík", 60, 60, 300, 40, 1, 2, "Fjölbýlishús");
+            tmpProp = new Property("3","Gerðargata 12", 101, "Reykjavík", 60, 60, 300, 40, 1, 2, "Fjölbýlishús");
             mProperties.add(tmpProp);
 
             return;
         }
 
-        String url = "http://192.168.0.101:3000/properties/search";
 
-        JsonObjectRequest requestObject = new JsonObjectRequest(Request.Method.POST, url, data, new Response.Listener<JSONObject>() {
+        JsonObjectRequest requestObject = new JsonObjectRequest(Request.Method.POST, productionURL, data, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.i("PropertyStorage", response.toString());
+                String TAG = "PropertyStorage";
+                Log.d(TAG, response.toString());
+                try {
+                    JSONArray propertiesArray = response.getJSONArray("properties");
+//                    Log.i(TAG, tmp.toString());
+
+                    for (int i = 0; i < propertiesArray.length(); i++) {
+                        JSONObject property = propertiesArray.getJSONObject(i);
+//                        Log.i(TAG, property.toString());
+
+                        String id = property.getString("property_id");
+
+                        String address = property.getString("address");
+
+
+                        int zipcode = property.getInt("zipcode");
+
+                        String city = property.getString("city");
+
+
+                        int price = property.getInt("price");
+
+
+                        int size = property.getInt("size");
+
+                        String propertyType = property.getString("property_type");
+
+                        int numBedrooms = property.getInt("rooms");
+
+
+                        int numBathrooms = property.getInt("bathrooms");
+
+
+                        JSONObject gpsLocation = property.getJSONObject("gpslocation");
+
+                        double lat = gpsLocation.getDouble("lat");
+
+                        double lng = gpsLocation.getDouble("lng");
+
+                        Property tmpProperty = new Property(id, address, zipcode, city, price, size, lat, lng, numBedrooms, numBathrooms, propertyType);
+                        Log.i(TAG, "adding property!");
+                        mProperties.add(tmpProperty);
+
+                    }
+                } catch (JSONException je){
+                    Log.e(TAG, je.toString());
+                }
+
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("PropertyStorage", error.toString());
+                Log.d("PropertyStorage", error.toString());
             }
         });
 
 
         NetworkController.getInstance(mCtx).addToRequestQueue(requestObject);
-
     }
 }

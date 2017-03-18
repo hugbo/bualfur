@@ -27,6 +27,11 @@ public class PropertyListFragment extends Fragment {
         mPropertyRecyclerView = (RecyclerView) view.findViewById(R.id.property_recycler_view);
         mPropertyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e){
+            //NOTHING
+        }
         updateUI();
 
         return view;
