@@ -9,4 +9,5 @@
     <string name="property_bathrooms">Enter number of bathrooms:</string>
     <string name="property_type">Enter type of property:</string>
     <string name="property_save">Save</string>
+    <string name="facebook_app_id">1370264999680412</string>
 </resources>
