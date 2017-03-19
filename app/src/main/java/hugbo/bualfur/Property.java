@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public class Property {
     private UUID mId;
+    private String mServerId;
     private String mAddress;
     private int mZipcode;
     private String mCity;
@@ -19,10 +20,11 @@ public class Property {
     private int mNumBathrooms;
     private String mPropertyType;
 
-    public Property(String address, int zipcode, String city,
+    public Property(String serverPropertyId, String address, int zipcode, String city,
                     int price, int size, double lat, double lon,
                     int numBedrooms, int numBathroooms, String propertyType) {
         mId = UUID.randomUUID();
+        mServerId = serverPropertyId;
         mAddress = address;
         mZipcode = zipcode;
         mCity = city;
@@ -38,6 +40,11 @@ public class Property {
     public void setmId(UUID mId) {
         this.mId = mId;
     }
+
+    public void setmServerId(String mServerId) {
+        this.mServerId = mServerId;
+    }
+
 
     public void setmAddress(String mAddress) {
         this.mAddress = mAddress;
@@ -82,6 +89,11 @@ public class Property {
     public UUID getmId() {
         return mId;
     }
+
+    public String getmServerId() {
+        return mServerId;
+    }
+
 
     public String getmAddress() {
         return mAddress;
