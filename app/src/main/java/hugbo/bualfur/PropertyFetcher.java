@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by stefan on 18/03/17.
@@ -21,12 +22,13 @@ import java.util.ArrayList;
 
 public class PropertyFetcher {
     private final String TAG = "PropertyFetcher";
+    private static PropertyFetcher mPropertyFetcherInstance;
     private ArrayList<Property> mProperties;
     private String developmentURL = "http://192.168.0.101:3000/properties/search";
     private String productionURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/search";
     private Context mCtx;
 
-    public PropertyFetcher(Context context){
+    private PropertyFetcher(Context context){
             mCtx = context;
     }
 
@@ -48,8 +50,11 @@ public class PropertyFetcher {
             tmpProp = new Property("3","Gerðargata 12", 101, "Reykjavík", 60, 60, 300, 40, 1, 2, "Fjölbýlishús");
             mProperties.add(tmpProp);
 
-            return;
+            callback.onSuccess(mProperties);
         }
+
+        //        Log.i(TAG, "searchProperties: "+data.toString());
+
 
         JsonObjectRequest requestObject = new JsonObjectRequest(Request.Method.POST, productionURL, data, new Response.Listener<JSONObject>() {
             @Override
@@ -57,7 +62,7 @@ public class PropertyFetcher {
                 Log.d(TAG, response.toString());
                 try {
                     JSONArray propertiesArray = response.getJSONArray("properties");
-//                    Log.i(TAG, tmp.toString());
+//                    Log.i(TAG, propertiesArray.toString());
 
                     for (int i = 0; i < propertiesArray.length(); i++) {
                         JSONObject property = propertiesArray.getJSONObject(i);
@@ -93,7 +98,6 @@ public class PropertyFetcher {
                         double lng = gpsLocation.getDouble("lng");
 
                         Property tmpProperty = new Property(id, address, zipcode, city, price, size, lat, lng, numBedrooms, numBathrooms, propertyType);
-                        Log.i(TAG, "adding property!");
                         mProperties.add(tmpProperty);
 
                     }
@@ -111,7 +115,26 @@ public class PropertyFetcher {
 
 
 
-        NetworkController.getInstance(mCtx).addToRequestQueue(requestObject);
+        NetworkController.getInstance(mCtx.getApplicationContext()).addToRequestQueue(requestObject);
     }
 
+    public Property getProperty(UUID id) {
+
+        for (Property property : mProperties){
+            if(property.getmId().equals(id)){
+                return property;
+            }
+        }
+
+        return null;
+
+    }
+
+
+    public static synchronized PropertyFetcher getInstance(Context context){
+        if(mPropertyFetcherInstance == null){
+            mPropertyFetcherInstance = new PropertyFetcher(context);
+        }
+        return mPropertyFetcherInstance;
+    }
 }
