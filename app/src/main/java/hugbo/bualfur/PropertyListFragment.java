@@ -1,5 +1,6 @@
 package hugbo.bualfur;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -51,6 +52,7 @@ public class PropertyListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View view = inflater.inflate(R.layout.fragment_property_list, container, false);
+
 
         mPropertyRecyclerView = (RecyclerView) view.findViewById(R.id.property_recycler_view);
         mPropertyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -127,19 +129,20 @@ public class PropertyListFragment extends Fragment {
     }
 
 
-    private class PropertyHolder extends RecyclerView.ViewHolder {
+    private class PropertyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mAddressTextView;
         private TextView mPriceTextView;
         private Property mProperty;
 
-        public PropertyHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.list_item_property, parent, false));
+        public PropertyHolder(View view) {
+            super(view);
+            view.setClickable(true);
 
             mAddressTextView = (TextView) itemView.findViewById(R.id.property_address);
             mPriceTextView = (TextView) itemView.findViewById(R.id.property_price);
 
-
+            view.setOnClickListener(this);
         }
 
         public void bind(Property property){
@@ -147,6 +150,14 @@ public class PropertyListFragment extends Fragment {
             mAddressTextView.setText(mProperty.getmAddress());
             mPriceTextView.setText(String.valueOf(mProperty.getmPrice()));
         }
+
+        @Override
+        public void onClick(View view){
+            Intent intent = PropertyActivity.newIntent(getActivity(), mProperty.getmId());
+            startActivity(intent);
+        }
+
+
     }
 
     private class FetchPropertiesTask extends AsyncTask<Void, Void, Void> {
@@ -201,8 +212,9 @@ public class PropertyListFragment extends Fragment {
         @Override
         public PropertyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            View view = layoutInflater.inflate(R.layout.list_item_property, parent, false);
 
-            return new PropertyHolder(layoutInflater, parent);
+            return new PropertyHolder(view);
         }
 
         @Override

@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by stefan on 18/03/17.
@@ -117,11 +118,11 @@ public class PropertyFetcher {
         NetworkController.getInstance(mCtx.getApplicationContext()).addToRequestQueue(requestObject);
     }
 
-    public Property getProperty(String id) {
+    public Property getProperty(UUID id) {
 
-        for (int i = 0; i < mProperties.size(); i++) {
-            if (id == mProperties.get(i).getmServerId()) {
-                return mProperties.get(i);
+        for (Property property : mProperties){
+            if(property.getmId().equals(id)){
+                return property;
             }
         }
 
