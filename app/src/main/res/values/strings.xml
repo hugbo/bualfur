@@ -9,6 +9,10 @@
     <string name="property_bathrooms">Enter number of bathrooms:</string>
     <string name="property_type">Enter type of property:</string>
     <string name="property_save">Save</string>
+    <string name="login_message">Please log in to use the app</string>
+    <string name="login_success_message">Login success</string>
+    <string name="facebook_app_id">1370264999680412</string>
+    <string name="fb_login_protocol_scheme">1370264999680412</string>
     <string name="search_text">Property search</string>
     <string name="min_price">Enter min price</string>
     <string name="max_price">Enter max price</string>
