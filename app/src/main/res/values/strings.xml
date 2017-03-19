@@ -37,7 +37,7 @@
         <item>250</item>
         <item>300</item>
     </string-array>
-    <string name="search_button">Search</string>
+    <string name="search_button_text">Search</string>
     <string name="price_range_text">Price range</string>
     <string name="to_search_text">to</string>
     <string name="choose_size_range">Square meters</string>
