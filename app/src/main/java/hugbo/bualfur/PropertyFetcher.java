@@ -110,8 +110,19 @@ public class PropertyFetcher {
         });
 
 
-
         NetworkController.getInstance(mCtx).addToRequestQueue(requestObject);
+    }
+
+    public Property getProperty(String id) {
+
+        for (int i = 0; i < mProperties.size(); i++) {
+            if (id == mProperties.get(i).getmServerId()) {
+                return mProperties.get(i);
+            }
+        }
+
+        return null;
+
     }
 
 
