@@ -40,6 +40,7 @@ public class PropertyFetcher {
     public void searchProperties(JSONObject data, final ServerCallback callback){
         mProperties = new ArrayList<Property>();
 
+        Log.i(TAG, "searchProperties: "+data.toString());
         if(data == null){
             // Use dummy properties
             Property tmpProp = new Property("1","Smyrlahraun 50", 201, "Hafnarfjörður", 60, 60, 500, 50, 1, 1, "Einbýlishús");
@@ -58,7 +59,7 @@ public class PropertyFetcher {
                 Log.d(TAG, response.toString());
                 try {
                     JSONArray propertiesArray = response.getJSONArray("properties");
-//                    Log.i(TAG, tmp.toString());
+//                    Log.i(TAG, propertiesArray.toString());
 
                     for (int i = 0; i < propertiesArray.length(); i++) {
                         JSONObject property = propertiesArray.getJSONObject(i);
@@ -110,7 +111,8 @@ public class PropertyFetcher {
         });
 
 
-        NetworkController.getInstance(mCtx).addToRequestQueue(requestObject);
+
+        NetworkController.getInstance(mCtx.getApplicationContext()).addToRequestQueue(requestObject);
     }
 
     public Property getProperty(String id) {
