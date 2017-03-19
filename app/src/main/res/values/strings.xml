@@ -42,4 +42,13 @@
     <string name="to_search_text">to</string>
     <string name="choose_size_range">Square meters</string>
     <string name="number_of_rooms">Number of rooms</string>
+    <string name="view_address_text">Address</string>
+    <string name="view_price_text">Price</string>
+    <string name="view_description_text">Description</string>
+    <string name="view_listing_type">Type</string>
+    <string name="view_no_bathrooms">Number of bathrooms</string>
+    <string name="view_number_of_bedrooms">Number of bedrooms</string>
+    <string name="view_square_meters">Square meters</string>
+    <string name="view_city">City</string>
+    <string name="view_zip_code">Zip code</string>
 </resources>

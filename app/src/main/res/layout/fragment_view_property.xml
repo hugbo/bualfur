@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="16dp">
 
     <ScrollView
@@ -18,7 +18,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Heimilisfang"/>
+                android:text="@string/view_address_text"/>
 
             <TextView
                 android:id="@+id/property_address"
@@ -29,7 +29,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Leiguverð"/>
+                android:text="@string/view_price_text"/>
 
             <TextView
                 android:id="@+id/property_price"
@@ -40,7 +40,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Póstnúmer"/>
+                android:text="@string/view_zip_code"/>
 
             <TextView
                 android:id="@+id/property_zipcode"
@@ -51,7 +51,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Borg/Bær" />
+                android:text="@string/view_city" />
 
             <TextView
                 android:id="@+id/property_city"
@@ -62,7 +62,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fermetrar" />
+                android:text="@string/view_square_meters" />
 
             <TextView
                 android:id="@+id/property_size"
@@ -73,7 +73,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fjöldi svefnherbergja" />
+                android:text="@string/view_number_of_bedrooms" />
 
             <TextView
                 android:id="@+id/property_bedrooms"
@@ -84,7 +84,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fjöldi baðherbergja" />
+                android:text="@string/view_no_bathrooms" />
 
             <TextView
                 android:id="@+id/property_bathrooms"
@@ -95,7 +95,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tegund húsnæðis" />
+                android:text="@string/view_listing_type" />
 
             <TextView
                 android:id="@+id/property_houseType"
@@ -106,7 +106,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lýsing" />
+                android:text="@string/view_description_text" />
 
             <TextView
                 style="?android:listSeparatorTextViewStyle"
@@ -115,8 +115,6 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-
-
 
     </ScrollView>
 
