@@ -7,86 +7,36 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
 
 /**
- * Created by egill on 13.3.2017.
+ * Created by stefan on 18/03/17.
  */
 
-// Singleton class to store Property instances
-public class PropertyStorage {
-    private static PropertyStorage sPropertyStorage;
+public class PropertyFetcher {
+    private final String TAG = "PropertyFetcher";
     private ArrayList<Property> mProperties;
-    private boolean testing = true;
-    private Context mCtx;
     private String developmentURL = "http://192.168.0.101:3000/properties/search";
     private String productionURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/search";
+    private Context mCtx;
 
-
-    public static PropertyStorage get(Context context){
-        if (sPropertyStorage == null){
-            sPropertyStorage = new PropertyStorage(context);
-        }
-        return sPropertyStorage;
+    public PropertyFetcher(Context context){
+            mCtx = context;
     }
 
-    private PropertyStorage(Context context){
-
-        mCtx = context;
-
-        // Fetch default values from property server
-
-        HashMap<String, String> searchParams = new HashMap<>();
-
-        searchParams.put("price_max", "");
-        searchParams.put("price_min", "");
-        searchParams.put("property_type", "");
-        searchParams.put("rooms_max", "");
-        searchParams.put("rooms_min", "");
-        searchParams.put("square_meters_max", "0");
-        searchParams.put("square_meters_min", "0");
-        searchParams.put("zipcode", "");
-
-
-        JSONObject data = new JSONObject(searchParams);
-
-        if (testing){
-            searchProperties(data);
-        } else {
-            searchProperties(null);
-        }
-
-
-    }
 
     public ArrayList<Property> getProperties(){
-        for (Property property : mProperties){
-            Log.i("LEL", "getProperties: "+property.getmAddress());
-        }
         return mProperties;
     }
 
-    public Property getProperty(UUID id){
-        for (Property property : mProperties){
-            if (property.getmId().equals(id)){
-                return property;
-            }
-        }
-        return null;
-    }
 
-
-    public void searchProperties(JSONObject data){
+    public void searchProperties(JSONObject data, final ServerCallback callback){
         mProperties = new ArrayList<Property>();
 
         if(data == null){
@@ -101,11 +51,9 @@ public class PropertyStorage {
             return;
         }
 
-
         JsonObjectRequest requestObject = new JsonObjectRequest(Request.Method.POST, productionURL, data, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String TAG = "PropertyStorage";
                 Log.d(TAG, response.toString());
                 try {
                     JSONArray propertiesArray = response.getJSONArray("properties");
@@ -149,11 +97,10 @@ public class PropertyStorage {
                         mProperties.add(tmpProperty);
 
                     }
+                    callback.onSuccess(mProperties);
                 } catch (JSONException je){
                     Log.e(TAG, je.toString());
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -163,6 +110,8 @@ public class PropertyStorage {
         });
 
 
+
         NetworkController.getInstance(mCtx).addToRequestQueue(requestObject);
     }
+
 }

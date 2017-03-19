@@ -1,5 +1,6 @@
 package hugbo.bualfur;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by egill on 13.3.2017.
@@ -19,23 +24,36 @@ import java.util.ArrayList;
 public class PropertyListFragment extends Fragment {
     private RecyclerView mPropertyRecyclerView;
     private PropertyAdapter mAdapter;
+    private ArrayList<Property> mItems = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
+
         View view = inflater.inflate(R.layout.fragment_property_list, container, false);
 
         mPropertyRecyclerView = (RecyclerView) view.findViewById(R.id.property_recycler_view);
         mPropertyRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e){
-            //NOTHING
-        }
-        updateUI();
+        setupAdapter();
 
         return view;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+        new FetchPropertiesTask().execute();
+    }
+
+    private void setupAdapter(){
+        if(isAdded()){
+            mPropertyRecyclerView.setAdapter(new PropertyAdapter(mItems));
+        }
+    }
+
+
 
     private class PropertyHolder extends RecyclerView.ViewHolder {
 
@@ -56,6 +74,45 @@ public class PropertyListFragment extends Fragment {
             mPriceTextView.setText(String.valueOf(mProperty.getmPrice()));
         }
     }
+
+
+    private class FetchPropertiesTask extends AsyncTask<Void, Void, Void> {
+        private final String TAG = "FetchPropertiesTask";
+        @Override
+        protected Void doInBackground(Void... params){
+            try{
+
+                HashMap<String, String> searchParams = new HashMap<>();
+
+                searchParams.put("price_max", "");
+                searchParams.put("price_min", "");
+                searchParams.put("property_type", "");
+                searchParams.put("rooms_max", "");
+                searchParams.put("rooms_min", "");
+                searchParams.put("square_meters_max", "0");
+                searchParams.put("square_meters_min", "0");
+                searchParams.put("zipcode", "");
+
+
+                JSONObject data = new JSONObject(searchParams);
+                new PropertyFetcher(getActivity()).searchProperties(data, new ServerCallback() {
+                    @Override
+                    public void onSuccess(ArrayList<Property> results) {
+                        mItems = results;
+                        setupAdapter();
+
+                    }
+                });
+
+                return null;
+            } catch (Exception e){
+                Log.e("FetchPropertiesFromServer", "instance initializer: "+e.toString() );
+            }
+
+            return null;
+        }
+    }
+
 
     private class PropertyAdapter extends RecyclerView.Adapter<PropertyHolder> {
         private ArrayList<Property> mProperties;
@@ -81,13 +138,5 @@ public class PropertyListFragment extends Fragment {
         public int getItemCount() {
             return mProperties.size();
         }
-    }
-
-    private void updateUI(){
-        PropertyStorage propertyStorage = PropertyStorage.get(getActivity());
-        ArrayList<Property> properties = propertyStorage.getProperties();
-
-        mAdapter = new PropertyAdapter(properties);
-        mPropertyRecyclerView.setAdapter(mAdapter);
     }
 }
