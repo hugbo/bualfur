@@ -1,65 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/search_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:orientation="vertical">
+        android:padding="6dp"
+        android:text="@string/search_text"
+        android:gravity="center"
+        android:textStyle="bold"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rentInput">
-            <EditText
-                android:id="@+id/rentMin"
-                android:layout_width="148dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.74"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Leiguverð min"
-                />
+    <TextView
+        android:id="@+id/zip_code_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="@string/zip_code_text"
+        android:textStyle="bold"/>
 
-            <EditText
-                android:id="@+id/rentMax"
-                android:layout_width="212dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Leiguverð max"
-                android:layout_toRightOf="@id/rentMin"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+        <Spinner
+            android:id="@+id/zip_code_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rentInput"
-            >
-
-            <Spinner
-                android:id="@+id/zipCodes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rentMin" />
-
+            android:entries="@array/zip_code_array"
+            android:padding="4dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_range_text"
+        android:padding="4dp"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/rent_min_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:hint="@string/min_price"/>
+        <TextView
+            android:id="@+id/price_range_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_search_text"
+            android:textStyle="bold"
+            android:padding="4dp"/>
+        <EditText
+            android:id="@+id/rent_max_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="@string/max_price"
+            android:padding="4dp"/>
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/range_number_of_rooms_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/number_of_rooms"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/min_no_of_rooms_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/range_number_of_rooms_text_view"
+                android:entries="@array/no_of_rooms_array"
+                android:padding="4dp"/>
+
+            <TextView
+                android:id="@+id/number_of_rooms_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/range_number_of_rooms_text_view"
+                android:layout_toEndOf="@id/min_no_of_rooms_spinner"
+                android:padding="4dp"
+                android:text="@string/to_search_text"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/max_no_of_rooms_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/range_number_of_rooms_text_view"
+                android:layout_toEndOf="@id/number_of_rooms_text_view"
+                android:entries="@array/no_of_rooms_array"
+                android:padding="4dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/range_size_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/choose_size_range"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/min_size_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/range_size_text_view"
+                android:entries="@array/size_array"
+                android:padding="4dp"/>
+
+            <TextView
+                android:id="@+id/size_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/range_size_text_view"
+                android:layout_toEndOf="@id/min_size_spinner"
+                android:padding="4dp"
+                android:text="@string/to_search_text"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/max_size_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/range_size_text_view"
+                android:layout_toEndOf="@id/size_text_view"
+                android:entries="@array/size_array"
+                android:padding="4dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_button"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/property_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="292dp"
-        android:layout_gravity="bottom" />
-
-</FrameLayout>
+        android:layout_gravity="bottom"/>
+</LinearLayout>
 
