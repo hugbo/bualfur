@@ -8,12 +8,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -38,6 +40,33 @@ public class PropertyFetcher {
     }
 
 
+    public JSONObject defaultParameters(){
+        HashMap<String, String> searchParams = new HashMap<>();
+
+        searchParams.put("price_max", "");
+        searchParams.put("price_min", "");
+        searchParams.put("property_type", "");
+        searchParams.put("rooms_max", "");
+        searchParams.put("rooms_min", "");
+        searchParams.put("square_meters_max", "0");
+        searchParams.put("square_meters_min", "0");
+        searchParams.put("zipcode", "");
+
+
+        JSONObject data = new JSONObject(searchParams);
+
+        HashMap<String, JSONObject> tmp = new HashMap<String, JSONObject>();
+        tmp.put("search", data);
+        data = new JSONObject(tmp);
+
+        return data;
+    }
+
+    /**
+     * Search method that fetches a list of properties from the hugbo1 server
+     * @param data the JSONObject that contains the search parameters
+     * @param callback success callback to return the results
+     */
     public void searchProperties(JSONObject data, final ServerCallback callback){
         mProperties = new ArrayList<Property>();
 
