@@ -66,6 +66,8 @@ public class PropertyListFragment extends Fragment {
 
             mAddressTextView = (TextView) itemView.findViewById(R.id.property_address);
             mPriceTextView = (TextView) itemView.findViewById(R.id.property_price);
+
+
         }
 
         public void bind(Property property){
@@ -74,7 +76,6 @@ public class PropertyListFragment extends Fragment {
             mPriceTextView.setText(String.valueOf(mProperty.getmPrice()));
         }
     }
-
 
     private class FetchPropertiesTask extends AsyncTask<Void, Void, Void> {
         private final String TAG = "FetchPropertiesTask";
@@ -95,7 +96,7 @@ public class PropertyListFragment extends Fragment {
 
 
                 JSONObject data = new JSONObject(searchParams);
-                new PropertyFetcher(getActivity()).searchProperties(data, new ServerCallback() {
+                PropertyFetcher.getInstance(getActivity()).searchProperties(data, new ServerCallback() {
                     @Override
                     public void onSuccess(ArrayList<Property> results) {
                         mItems = results;

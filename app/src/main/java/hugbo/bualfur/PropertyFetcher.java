@@ -21,12 +21,13 @@ import java.util.ArrayList;
 
 public class PropertyFetcher {
     private final String TAG = "PropertyFetcher";
+    private static PropertyFetcher mPropertyFetcherInstance;
     private ArrayList<Property> mProperties;
     private String developmentURL = "http://192.168.0.101:3000/properties/search";
     private String productionURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/search";
     private Context mCtx;
 
-    public PropertyFetcher(Context context){
+    private PropertyFetcher(Context context){
             mCtx = context;
     }
 
@@ -93,7 +94,6 @@ public class PropertyFetcher {
                         double lng = gpsLocation.getDouble("lng");
 
                         Property tmpProperty = new Property(id, address, zipcode, city, price, size, lat, lng, numBedrooms, numBathrooms, propertyType);
-                        Log.i(TAG, "adding property!");
                         mProperties.add(tmpProperty);
 
                     }
@@ -114,4 +114,11 @@ public class PropertyFetcher {
         NetworkController.getInstance(mCtx).addToRequestQueue(requestObject);
     }
 
+
+    public static synchronized PropertyFetcher getInstance(Context context){
+        if(mPropertyFetcherInstance == null){
+            mPropertyFetcherInstance = new PropertyFetcher(context);
+        }
+        return mPropertyFetcherInstance;
+    }
 }
