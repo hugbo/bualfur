@@ -165,23 +165,8 @@ public class PropertyListFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... params){
             try{
-                HashMap<String, String> searchParams = new HashMap<>();
 
-                searchParams.put("price_max", "");
-                searchParams.put("price_min", "");
-                searchParams.put("property_type", "");
-                searchParams.put("rooms_max", "");
-                searchParams.put("rooms_min", "");
-                searchParams.put("square_meters_max", "0");
-                searchParams.put("square_meters_min", "0");
-                searchParams.put("zipcode", "");
-
-
-                JSONObject data = new JSONObject(searchParams);
-
-                HashMap<String, JSONObject> tmp = new HashMap<String, JSONObject>();
-                tmp.put("search", data);
-                data = new JSONObject(tmp);
+                JSONObject data = PropertyFetcher.getInstance(getActivity()).defaultParameters();
 
                 PropertyFetcher.getInstance(getActivity()).searchProperties(data, new ServerCallback() {
                     @Override
