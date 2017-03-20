@@ -3,15 +3,20 @@ package hugbo.bualfur;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static hugbo.bualfur.R.id.map;
 
@@ -21,6 +26,7 @@ import static hugbo.bualfur.R.id.map;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
+    private List<Marker> mMarkers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +47,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         PropertyFetcher.getInstance(this).searchProperties(data, new ServerCallback() {
             @Override
             public void onSuccess(ArrayList<Property> results) {
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
                 for (Property property: results){
-                    LatLng marker = new LatLng(property.getmLat(), property.getmLon());
-                    googleMap.addMarker(new MarkerOptions().position(marker).title(property.getmAddress()));
+                    LatLng latLng = new LatLng(property.getmLat(), property.getmLon());
+                    googleMap.addMarker(new MarkerOptions().position(latLng).title(property.getmAddress()));
+                    builder.include(latLng);
+
                 }
+
+                LatLngBounds bounds = builder.build();
+
+                int padding = 100;
+
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+                googleMap.moveCamera(cu);
             }
         });
-        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
     }
 }
