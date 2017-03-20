@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 /**
  * Created by egill on 12.3.2017.
+ * Fragment Class that handles the creation of new Properties.
  */
 
 public class PropertyFragment extends android.support.v4.app.Fragment {

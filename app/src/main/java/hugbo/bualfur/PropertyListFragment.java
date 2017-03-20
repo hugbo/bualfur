@@ -25,9 +25,12 @@ import java.util.List;
 
 /**
  * Created by egill on 13.3.2017.
+ * Fragment for the Main Search window.
  */
 
 public class PropertyListFragment extends Fragment {
+
+    //UI Elements
     private RecyclerView mPropertyRecyclerView;
     private PropertyAdapter mAdapter;
     private Button mSearchButton;
@@ -44,12 +47,18 @@ public class PropertyListFragment extends Fragment {
 
 
 
-
+    //Other instance variables
     private ArrayList<Property> mItems = new ArrayList<>();
 
 
+    @Override    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View view = inflater.inflate(R.layout.fragment_property_list, container, false);
@@ -132,6 +141,9 @@ public class PropertyListFragment extends Fragment {
 
     }
 
+    /**
+     * Sets up an adapter to update the RecyclerView
+     */
     private void setupAdapter(){
         if(isAdded()){
             mPropertyRecyclerView.setAdapter(new PropertyAdapter(mItems));
@@ -139,12 +151,16 @@ public class PropertyListFragment extends Fragment {
     }
 
 
+    /**
+     * Private class that holds the elements inside the RecyclerView
+     */
     private class PropertyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mAddressTextView;
         private TextView mPriceTextView;
         private Property mProperty;
 
+        //Constructor
         public PropertyHolder(View view) {
             super(view);
             view.setClickable(true);
@@ -155,6 +171,10 @@ public class PropertyListFragment extends Fragment {
             view.setOnClickListener(this);
         }
 
+        /**
+         * Binds the different properties onto the List inside the RecyclerView
+         * @param property
+         */
         public void bind(Property property){
             mProperty = property;
             mAddressTextView.setText(mProperty.getmAddress());
@@ -170,6 +190,9 @@ public class PropertyListFragment extends Fragment {
 
     }
 
+    /**
+     * Private class that handles Asynchronous tasks so it doesn't interrupt the main UI thread.
+     */
     private class FetchPropertiesTask extends AsyncTask<Void, Void, Void> {
         private final String TAG = "FetchPropertiesTask";
         @Override
@@ -196,7 +219,7 @@ public class PropertyListFragment extends Fragment {
         }
     }
 
-
+    //Adapter class for the RecyclerView
     private class PropertyAdapter extends RecyclerView.Adapter<PropertyHolder> {
         private ArrayList<Property> mProperties;
 

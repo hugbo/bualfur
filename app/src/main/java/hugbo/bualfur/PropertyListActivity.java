@@ -10,6 +10,7 @@ import android.view.View;
 
 /**
  * Created by egill on 13.3.2017.
+ * PropertyListActivity which initializes the PropertyListFragment
  */
 
 public class PropertyListActivity extends SingleFragmentActivity {

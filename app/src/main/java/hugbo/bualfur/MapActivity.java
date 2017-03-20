@@ -25,12 +25,23 @@ import static hugbo.bualfur.R.id.map;
 
 /**
  * Created by Hildur on 3/19/2017.
+ * This class handles the Google Maps activity which displays
+ * all of the current properties on a map.
  */
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    /**
+     * Instance variables
+     */
     private GoogleMap mMap;
     private List<Marker> mMarkers;
 
+    /**
+     * Creates a new intent for the Map Activity
+     * @param packageContext
+     * @return intent for MapActivity
+     */
     public static Intent newIntent(Context packageContext){
         Intent intent = new Intent(packageContext, MapActivity.class);
         return intent;
@@ -48,6 +59,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+
+    /**
+     * Callback function for the Google Maps map once it initializes.
+     * @param googleMap
+     */
     @Override
     public void onMapReady(final GoogleMap googleMap) {
 
@@ -56,6 +72,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
+        //Create markers
         for (Property property: properties){
             LatLng latLng = new LatLng(property.getmLat(), property.getmLon());
             googleMap.addMarker(new MarkerOptions().position(latLng).title(property.getmAddress()));
@@ -65,6 +82,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         LatLngBounds bounds = builder.build();
 
+        // Set padding so that we don't zoom in too much
         int padding = 100;
 
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);

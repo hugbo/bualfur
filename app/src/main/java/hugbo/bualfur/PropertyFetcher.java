@@ -20,9 +20,13 @@ import java.util.UUID;
 
 /**
  * Created by stefan on 18/03/17.
+ * Singleton class that handles the fetching of properties
+ * from within the app or from a server
  */
 
 public class PropertyFetcher {
+
+    //Instance variables
     private final String TAG = "PropertyFetcher";
     private static PropertyFetcher mPropertyFetcherInstance;
     private ArrayList<Property> mProperties;
@@ -30,6 +34,7 @@ public class PropertyFetcher {
     private String productionURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/search";
     private Context mCtx;
 
+    //Constructor
     private PropertyFetcher(Context context){
             mCtx = context;
     }
@@ -40,6 +45,11 @@ public class PropertyFetcher {
     }
 
 
+    /**
+     * Creates the default parameters which returns
+     * all of the available properties on the server
+     * @return JSONObject with default params
+     */
     public JSONObject defaultParameters(){
         HashMap<String, String> searchParams = new HashMap<>();
 
@@ -82,7 +92,7 @@ public class PropertyFetcher {
             callback.onSuccess(mProperties);
         }
 
-        //        Log.i(TAG, "searchProperties: "+data.toString());
+                Log.i(TAG, "searchProperties: "+data.toString());
 
 
         JsonObjectRequest requestObject = new JsonObjectRequest(Request.Method.POST, productionURL, data, new Response.Listener<JSONObject>() {
@@ -91,11 +101,12 @@ public class PropertyFetcher {
                 Log.d(TAG, response.toString());
                 try {
                     JSONArray propertiesArray = response.getJSONArray("properties");
-//                    Log.i(TAG, propertiesArray.toString());
+                    Log.i(TAG, propertiesArray.toString());
 
+                    //Iterate through the JSON Property array and create a Java Property list
                     for (int i = 0; i < propertiesArray.length(); i++) {
                         JSONObject property = propertiesArray.getJSONObject(i);
-//                        Log.i(TAG, property.toString());
+                        Log.i(TAG, property.toString());
 
                         String id = property.getString("property_id");
 
@@ -147,6 +158,7 @@ public class PropertyFetcher {
         NetworkController.getInstance(mCtx.getApplicationContext()).addToRequestQueue(requestObject);
     }
 
+    //Get property based on it's UUID
     public Property getProperty(UUID id) {
 
         for (Property property : mProperties){
@@ -160,6 +172,11 @@ public class PropertyFetcher {
     }
 
 
+    /**
+     * Fetches an instance of PropertyFetcher if it exists or creates it.
+     * @param context
+     * @return PropertyFetcher instance
+     */
     public static synchronized PropertyFetcher getInstance(Context context){
         if(mPropertyFetcherInstance == null){
             mPropertyFetcherInstance = new PropertyFetcher(context);

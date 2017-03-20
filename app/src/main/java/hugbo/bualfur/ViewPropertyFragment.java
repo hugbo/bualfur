@@ -32,7 +32,7 @@ public class ViewPropertyFragment extends Fragment {
 
     private static final String ARG_PROPERTY_ID = "property_id";
     private static final String TAG = "ViewPropertyFragment";
-    private Property propertyToView;
+    private Property mPropertyToView;
 
 
     /**
@@ -78,7 +78,7 @@ public class ViewPropertyFragment extends Fragment {
     private void updateView(View view, UUID propertyId){
 
 
-        propertyToView = PropertyFetcher.getInstance(getActivity()).getProperty(propertyId);
+        mPropertyToView = PropertyFetcher.getInstance(getActivity()).getProperty(propertyId);
 
 
         // Assign handlers to all TextViews in the layout that need to be altered
@@ -94,28 +94,28 @@ public class ViewPropertyFragment extends Fragment {
 
 
         // Assign handlers to the property information variables and alter the layout
-        String address = propertyToView.getmAddress();
+        String address = mPropertyToView.getmAddress();
         addressTextView.setText(address);
 
-        String price = String.valueOf(propertyToView.getmPrice());
+        String price = String.valueOf(mPropertyToView.getmPrice());
         priceTextView.setText(price);
 
-        String zipcode = String.valueOf(propertyToView.getmZipcode());
+        String zipcode = String.valueOf(mPropertyToView.getmZipcode());
         zipcodeTextView.setText(zipcode);
 
-        String city = propertyToView.getmCity();
+        String city = mPropertyToView.getmCity();
         cityTextView.setText(city);
 
-        String size = String.valueOf(propertyToView.getmSize());
+        String size = String.valueOf(mPropertyToView.getmSize());
         sizeTextView.setText(size);
 
-        String numBedrooms = String.valueOf(propertyToView.getmNumBedrooms());
+        String numBedrooms = String.valueOf(mPropertyToView.getmNumBedrooms());
         bedroomsTextView.setText(numBedrooms);
 
-        String numBathrooms = String.valueOf(propertyToView.getmNumBathrooms());
+        String numBathrooms = String.valueOf(mPropertyToView.getmNumBathrooms());
         bathroomsTextView.setText(numBathrooms);
 
-        String propertyType = propertyToView.getmPropertyType();
+        String propertyType = mPropertyToView.getmPropertyType();
         typeTextView.setText(propertyType);
     }
 

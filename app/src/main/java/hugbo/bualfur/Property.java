@@ -4,9 +4,13 @@ import java.util.UUID;
 
 /**
  * Created by egill on 12.3.2017.
+ * A POJO for our Properties
  */
 
 public class Property {
+    /**
+     * Instance variables
+     */
     private UUID mId;
     private String mServerId;
     private String mAddress;
@@ -20,6 +24,21 @@ public class Property {
     private int mNumBathrooms;
     private String mPropertyType;
 
+
+    /**
+     * Constructor
+     * @param serverPropertyId
+     * @param address
+     * @param zipcode
+     * @param city
+     * @param price
+     * @param size
+     * @param lat
+     * @param lon
+     * @param numBedrooms
+     * @param numBathroooms
+     * @param propertyType
+     */
     public Property(String serverPropertyId, String address, int zipcode, String city,
                     int price, int size, double lat, double lon,
                     int numBedrooms, int numBathroooms, String propertyType) {
@@ -36,6 +55,8 @@ public class Property {
         mNumBathrooms = numBathroooms;
         mPropertyType = propertyType;
     }
+
+    //Getters and setters
 
     public void setmId(UUID mId) {
         this.mId = mId;
