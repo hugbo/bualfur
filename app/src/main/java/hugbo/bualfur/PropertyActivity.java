@@ -11,10 +11,19 @@ import java.util.UUID;
  * Created by oddgeir on 19.3.2017.
  */
 
+/**
+ *  Activity that invokes the view property fragment
+ */
 public class PropertyActivity extends SingleFragmentActivity {
 
     private static final String EXTRA_PROPERTY_ID = "hugbo.bualfur.propertyintent.property_id";
 
+    /**
+     * Creates an intent with the ID of the property to be viewed
+     * @param packageContext
+     * @param propertyID
+     * @return
+     */
     public static Intent newIntent(Context packageContext, UUID propertyID){
         Intent intent = new Intent(packageContext, PropertyActivity.class);
         intent.putExtra(EXTRA_PROPERTY_ID, propertyID);

@@ -23,6 +23,10 @@ import java.util.UUID;
  * Created by oddgeir on 19.3.2017.
  */
 
+
+/**
+ * Fragment that shows a single property and all its features
+ */
 public class ViewPropertyFragment extends Fragment {
 
 
@@ -31,7 +35,11 @@ public class ViewPropertyFragment extends Fragment {
     private Property propertyToView;
 
 
-
+    /**
+     * Constructor for the fragment
+     * @param propertyId
+     * @return
+     */
     public static ViewPropertyFragment newInstance(UUID propertyId){
         Bundle args = new Bundle();
         args.putSerializable(ARG_PROPERTY_ID, propertyId);
@@ -61,12 +69,19 @@ public class ViewPropertyFragment extends Fragment {
 
     }
 
-
+    /**
+     * Invokes the PropertyFetcher to get the specified property.
+     * Updates the layout to include the property information.
+     * @param view
+     * @param propertyId
+     */
     private void updateView(View view, UUID propertyId){
+
 
         propertyToView = PropertyFetcher.getInstance(getActivity()).getProperty(propertyId);
 
 
+        // Assign handlers to all TextViews in the layout that need to be altered
         TextView addressTextView = (TextView) view.findViewById(R.id.property_address);
         TextView priceTextView = (TextView) view.findViewById(R.id.property_price);
         TextView zipcodeTextView = (TextView) view.findViewById(R.id.property_zipcode);
@@ -77,12 +92,12 @@ public class ViewPropertyFragment extends Fragment {
         TextView typeTextView = (TextView) view.findViewById(R.id.property_houseType);
         //TextView DescriptionTextView = (TextView) this.getView().findViewById(R.id.property_description);
 
-        String address = propertyToView.getmAddress();
 
+        // Assign handlers to the property information variables and alter the layout
+        String address = propertyToView.getmAddress();
         addressTextView.setText(address);
 
         String price = String.valueOf(propertyToView.getmPrice());
-
         priceTextView.setText(price);
 
         String zipcode = String.valueOf(propertyToView.getmZipcode());
