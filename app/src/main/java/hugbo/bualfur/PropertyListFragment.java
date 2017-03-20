@@ -31,6 +31,7 @@ public class PropertyListFragment extends Fragment {
     private RecyclerView mPropertyRecyclerView;
     private PropertyAdapter mAdapter;
     private Button mSearchButton;
+    private Button mMapButton;
     private Spinner mZipCodeSpinner;
     private EditText mMinRentEditText;
     private EditText mMaxRentEditText;
@@ -65,6 +66,7 @@ public class PropertyListFragment extends Fragment {
         mMinSizeSpinner = (Spinner) view.findViewById(R.id.min_size_spinner);
         mMaxSizeSpinner = (Spinner) view.findViewById(R.id.max_size_spinner);
 
+
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,14 +100,22 @@ public class PropertyListFragment extends Fragment {
                     @Override
                     public void onSuccess(ArrayList<Property> results) {
                         mItems = results;
-                        for (Property property : results){
-                            Log.i("TESTING", property.getmAddress());
-                        }
                         setupAdapter();
                     }
                 });
 
 
+            }
+        });
+
+
+        mMapButton = (Button) view.findViewById(R.id.map_button);
+
+        mMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = MapActivity.newIntent(getActivity());
+                startActivity(intent);
             }
         });
 

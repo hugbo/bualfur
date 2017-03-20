@@ -1,5 +1,7 @@
 package hugbo.bualfur;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,6 +19,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static hugbo.bualfur.R.id.map;
 
@@ -27,6 +30,11 @@ import static hugbo.bualfur.R.id.map;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private List<Marker> mMarkers;
+
+    public static Intent newIntent(Context packageContext){
+        Intent intent = new Intent(packageContext, MapActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,27 +51,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(final GoogleMap googleMap) {
 
-        JSONObject data = PropertyFetcher.getInstance(this).defaultParameters();
-        PropertyFetcher.getInstance(this).searchProperties(data, new ServerCallback() {
-            @Override
-            public void onSuccess(ArrayList<Property> results) {
-                LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-                for (Property property: results){
-                    LatLng latLng = new LatLng(property.getmLat(), property.getmLon());
-                    googleMap.addMarker(new MarkerOptions().position(latLng).title(property.getmAddress()));
-                    builder.include(latLng);
+        ArrayList<Property> properties = PropertyFetcher.getInstance(this).getProperties();
 
-                }
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-                LatLngBounds bounds = builder.build();
+        for (Property property: properties){
+            LatLng latLng = new LatLng(property.getmLat(), property.getmLon());
+            googleMap.addMarker(new MarkerOptions().position(latLng).title(property.getmAddress()));
+            builder.include(latLng);
 
-                int padding = 100;
+        }
 
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        LatLngBounds bounds = builder.build();
 
-                googleMap.moveCamera(cu);
-            }
-        });
+        int padding = 100;
+
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+        googleMap.moveCamera(cu);
     }
 }
