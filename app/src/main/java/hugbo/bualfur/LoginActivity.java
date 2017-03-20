@@ -17,6 +17,9 @@ public class LoginActivity extends SingleFragmentActivity {
         return new LoginFragment();
     }
 
+    /**
+     * Disables user from exiting the login activity without having logged in
+     */
     @Override
     public void onBackPressed() {
 

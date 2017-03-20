@@ -1,5 +1,6 @@
 package hugbo.bualfur;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,10 @@ public class LoginFragment extends Fragment {
     private LoginButton loginButton;
     private CallbackManager callbackManager;
 
+    /**
+     * Creates a callback manager to be used later on
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,13 @@ public class LoginFragment extends Fragment {
         });
     }
 
+    /**
+     * Finds the login button and binds the callback manager to it.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_login, container, false);
@@ -58,6 +70,7 @@ public class LoginFragment extends Fragment {
         loginButton.setFragment(this);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            // Upon success, displays a message and brings user back to main activity
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Toast.makeText(getActivity(), R.string.login_success_message, Toast.LENGTH_SHORT).show();
@@ -78,6 +91,12 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Relegates information to the callback manager when Facebook sends a reply
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
