@@ -13,6 +13,8 @@
     <string name="login_success_message">Login success</string>
     <string name="facebook_app_id">1370264999680412</string>
     <string name="fb_login_protocol_scheme">1370264999680412</string>
+
+    <!-- fragment_property_list.xml layout -->
     <string name="search_text">Property search</string>
     <string name="min_price">Enter min price</string>
     <string name="max_price">Enter max price</string>
@@ -49,7 +51,8 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
-        <item>6+</item>
+        <item>6</item>
+        <item>7</item>
     </string-array>
     <string-array name="size_array">
         <item>50</item>
@@ -57,13 +60,18 @@
         <item>150</item>
         <item>200</item>
         <item>250</item>
-        <item>300+</item>
+        <item>300</item>
+        <item>350</item>
+        <item>400</item>
     </string-array>
     <string name="search_button_text">Search</string>
     <string name="price_range_text">Price range</string>
     <string name="to_search_text">to</string>
     <string name="choose_size_range">Square meters</string>
     <string name="number_of_rooms">Number of rooms</string>
+    <string name="map_button_text">See Properties on Map</string>
+
+    <!-- fragment_property.xml layout-->
     <string name="view_address_text">Address</string>
     <string name="view_price_text">Price</string>
     <string name="view_description_text">Description</string>
@@ -73,5 +81,4 @@
     <string name="view_square_meters">Square meters</string>
     <string name="view_city">City</string>
     <string name="view_zip_code">Zip code</string>
-    <string name="map_button_text">See Properties on Map</string>
 </resources>
