@@ -19,11 +19,29 @@
     <string name="zip_code_text">Zip code</string>
     <string-array name="zip_code_array">
         <item>101</item>
-        <item>102</item>
         <item>103</item>
         <item>104</item>
         <item>105</item>
         <item>107</item>
+        <item>108</item>
+        <item>109</item>
+        <item>110</item>
+        <item>111</item>
+        <item>112</item>
+        <item>113</item>
+        <item>114</item>
+        <item>116</item>
+        <item>170</item>
+        <item>200</item>
+        <item>201</item>
+        <item>203</item>
+        <item>210</item>
+        <item>225</item>
+        <item>220</item>
+        <item>221</item>
+        <item>270</item>
+        <item>271</item>
+        <item>276</item>
     </string-array>
     <string-array name="no_of_rooms_array">
         <item>1</item>
@@ -31,7 +49,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
-        <item>6</item>
+        <item>6+</item>
     </string-array>
     <string-array name="size_array">
         <item>50</item>
@@ -39,7 +57,7 @@
         <item>150</item>
         <item>200</item>
         <item>250</item>
-        <item>300</item>
+        <item>300+</item>
     </string-array>
     <string name="search_button_text">Search</string>
     <string name="price_range_text">Price range</string>
