@@ -106,8 +106,7 @@
                 android:id="@+id/create_property_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/property_save"
-                android:onClick="createProperty"/>
+                android:text="@string/property_save"/>
 
         </LinearLayout>
 
