@@ -1,4 +1,4 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,11 +15,12 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import hugbo.bualfur.model.Property;
+import hugbo.bualfur.storage.PropertyFetcher;
+import hugbo.bualfur.R;
 
 import static hugbo.bualfur.R.id.map;
 

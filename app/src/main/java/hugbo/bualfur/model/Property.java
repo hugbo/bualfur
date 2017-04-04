@@ -1,4 +1,4 @@
-package hugbo.bualfur;
+package hugbo.bualfur.model;
 
 import java.util.UUID;
 

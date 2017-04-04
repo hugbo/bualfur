@@ -1,12 +1,6 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.View;
 
 /**
  * Created by egill on 13.3.2017.

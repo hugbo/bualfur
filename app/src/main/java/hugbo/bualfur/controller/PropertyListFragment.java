@@ -1,4 +1,4 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,13 +15,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
+import hugbo.bualfur.R;
+import hugbo.bualfur.model.Property;
+import hugbo.bualfur.storage.PropertyFetcher;
+import hugbo.bualfur.storage.ServerCallback;
 
 /**
  * Created by egill on 13.3.2017.
@@ -212,7 +214,7 @@ public class PropertyListFragment extends Fragment {
 
                 return null;
             } catch (Exception e){
-                Log.e("FetchPropertiesFromServer", "instance initializer: "+e.toString() );
+                Log.e("FetchProperties", "instance init: "+e.toString() );
             }
 
             return null;

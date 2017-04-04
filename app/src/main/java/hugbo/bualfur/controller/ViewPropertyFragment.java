@@ -1,23 +1,18 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
+
+import hugbo.bualfur.R;
+import hugbo.bualfur.model.Property;
+import hugbo.bualfur.storage.PropertyFetcher;
 
 /**
  * Created by oddgeir on 19.3.2017.

@@ -1,12 +1,10 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
 import android.content.Context;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
 
 /**
  * Created by stefan on 16/03/17.

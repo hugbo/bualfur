@@ -1,4 +1,4 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import hugbo.bualfur.R;
 
 /**
  * Created by egill on 19.3.2017.

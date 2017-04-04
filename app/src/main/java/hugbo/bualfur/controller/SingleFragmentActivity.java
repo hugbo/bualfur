@@ -1,9 +1,11 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+
+import hugbo.bualfur.R;
 
 /**
  * Created by egill on 13.3.2017.

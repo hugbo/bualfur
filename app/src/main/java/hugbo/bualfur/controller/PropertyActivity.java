@@ -1,4 +1,4 @@
-package hugbo.bualfur;
+package hugbo.bualfur.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import java.util.UUID;
+
+import hugbo.bualfur.model.Property;
+import hugbo.bualfur.storage.PropertyFetcher;
 
 /**
  * Created by oddgeir on 19.3.2017.

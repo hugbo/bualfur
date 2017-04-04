@@ -1,8 +1,8 @@
-package hugbo.bualfur;
-
-import org.json.JSONObject;
+package hugbo.bualfur.storage;
 
 import java.util.ArrayList;
+
+import hugbo.bualfur.model.Property;
 
 /**
  * Created by stefan on 19/03/17.
