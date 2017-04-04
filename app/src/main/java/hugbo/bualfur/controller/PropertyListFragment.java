@@ -73,9 +73,6 @@ public class PropertyListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_property_list, container, false);
 
-
-        AccessToken at =  AccessToken.getCurrentAccessToken();
-
         SessionManager sm = SessionManager.getInstance(getActivity());
 
         if (!sm.isUserAuthenticated()){
@@ -89,9 +86,6 @@ public class PropertyListFragment extends Fragment {
         } else {
             mCurrentUser = sm.getCurrentUser();
         }
-
-
-
 
 
         mPropertyRecyclerView = (RecyclerView) view.findViewById(R.id.property_recycler_view);
@@ -213,7 +207,6 @@ public class PropertyListFragment extends Fragment {
 
         @Override
         public void onClick(View view){
-            //Intent intent = PropertyActivity.newIntent(getActivity(), mProperty.getmId());
             Intent intent = PropertyPagerActivity.newIntent(getActivity(), mProperty.getmId());
             startActivity(intent);
         }
