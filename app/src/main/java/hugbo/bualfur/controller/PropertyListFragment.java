@@ -185,7 +185,8 @@ public class PropertyListFragment extends Fragment {
 
         @Override
         public void onClick(View view){
-            Intent intent = PropertyActivity.newIntent(getActivity(), mProperty.getmId());
+            //Intent intent = PropertyActivity.newIntent(getActivity(), mProperty.getmId());
+            Intent intent = PropertyPagerActivity.newIntent(getActivity(), mProperty.getmId());
             startActivity(intent);
         }
 

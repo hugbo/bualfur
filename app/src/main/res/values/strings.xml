@@ -87,4 +87,10 @@
     <string name="view_square_meters">Square meters</string>
     <string name="view_city">City</string>
     <string name="view_zip_code">Zip code</string>
+
+    <!-- Menu -->
+    <string name="new_property">New Property</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle_format">%1$s properties</string>
 </resources>
