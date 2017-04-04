@@ -1,18 +1,24 @@
 <resources>
-    <string name="app_name">Bualfur</string>
-    <string name="property_address">Enter address:</string>
-    <string name="property_zipcode">Enter zipcode:</string>
-    <string name="property_city">Enter city:</string>
-    <string name="property_price">Enter price:</string>
-    <string name="property_size">Enter size:</string>
-    <string name="property_bedrooms">Enter number of bedrooms:</string>
-    <string name="property_bathrooms">Enter number of bathrooms:</string>
-    <string name="property_type">Enter type of property:</string>
-    <string name="property_save">Save</string>
-    <string name="login_message">Please log in to use the app</string>
-    <string name="login_success_message">Login success</string>
+    <string name="app_name">Búálfur</string>
+    <string name="property_address">Heimilisfang:</string>
+    <string name="property_zipcode">Póstnúmer:</string>
+    <string name="property_city">Borg/bær:</string>
+    <string name="property_price">Verð:</string>
+    <string name="property_size">Fermetrar:</string>
+    <string name="property_bedrooms">Fjöldi herbergja:</string>
+    <string name="property_bathrooms">Fjöldi baðherbergja:</string>
+    <string name="property_type">Tegund húsnæðis:</string>
+    <string name="property_save">Vista</string>
+    <string name="login_message">Vinsamlegast skráið ykkur inn til að nota appið</string>
+    <string name="login_success_message">Skráning tókst</string>
     <string name="facebook_app_id">1370264999680412</string>
     <string name="fb_login_protocol_scheme">1370264999680412</string>
+
+    <string-array name="houseType_array">
+        <item>Einbýli</item>
+        <item>Fjölbýli</item>
+        <item>Parhús</item>
+    </string-array>
 
     <!-- fragment_property_list.xml layout -->
     <string name="search_text">Property search</string>
