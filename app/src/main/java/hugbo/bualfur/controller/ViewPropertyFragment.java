@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import hugbo.bualfur.R;
 import hugbo.bualfur.model.Property;
-import hugbo.bualfur.storage.PropertyFetcher;
+import hugbo.bualfur.services.PropertyFetcher;
 
 /**
  * Created by oddgeir on 19.3.2017.

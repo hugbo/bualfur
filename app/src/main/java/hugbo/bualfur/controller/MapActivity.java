@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hugbo.bualfur.model.Property;
-import hugbo.bualfur.storage.PropertyFetcher;
+import hugbo.bualfur.services.PropertyFetcher;
 import hugbo.bualfur.R;
 
 import static hugbo.bualfur.R.id.map;

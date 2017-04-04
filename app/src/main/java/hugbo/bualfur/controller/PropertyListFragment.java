@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -22,8 +24,13 @@ import java.util.HashMap;
 
 import hugbo.bualfur.R;
 import hugbo.bualfur.model.Property;
-import hugbo.bualfur.storage.PropertyFetcher;
-import hugbo.bualfur.storage.ServerCallback;
+import hugbo.bualfur.model.User;
+import hugbo.bualfur.services.PropertyCallback;
+import hugbo.bualfur.services.PropertyFetcher;
+import hugbo.bualfur.services.SessionManager;
+import hugbo.bualfur.services.UserCallback;
+
+import static com.facebook.GraphRequest.TAG;
 
 /**
  * Created by egill on 13.3.2017.
@@ -44,6 +51,7 @@ public class PropertyListFragment extends Fragment {
     private Spinner mMaxNumRoomsSpinner;
     private Spinner mMinSizeSpinner;
     private Spinner mMaxSizeSpinner;
+    private User mCurrentUser;
 
 
 
@@ -64,6 +72,26 @@ public class PropertyListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View view = inflater.inflate(R.layout.fragment_property_list, container, false);
+
+
+        AccessToken at =  AccessToken.getCurrentAccessToken();
+
+        SessionManager sm = SessionManager.getInstance(getActivity());
+
+        if (!sm.isUserAuthenticated()){
+            sm.getLoggedInUser(new UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    mCurrentUser = user;
+                    Log.i(TAG, "onCreateView: "+mCurrentUser.getmFirstName());
+                }
+            });
+        } else {
+            mCurrentUser = sm.getCurrentUser();
+        }
+
+
+
 
 
         mPropertyRecyclerView = (RecyclerView) view.findViewById(R.id.property_recycler_view);
@@ -107,7 +135,7 @@ public class PropertyListFragment extends Fragment {
                 tmp.put("search", searchJson);
                 searchJson = new JSONObject(tmp);
 
-                PropertyFetcher.getInstance(getActivity()).searchProperties(searchJson, new ServerCallback() {
+                PropertyFetcher.getInstance(getActivity()).searchProperties(searchJson, new PropertyCallback() {
                     @Override
                     public void onSuccess(ArrayList<Property> results) {
                         mItems = results;
@@ -204,7 +232,7 @@ public class PropertyListFragment extends Fragment {
 
                 JSONObject data = PropertyFetcher.getInstance(getActivity()).defaultParameters();
 
-                PropertyFetcher.getInstance(getActivity()).searchProperties(data, new ServerCallback() {
+                PropertyFetcher.getInstance(getActivity()).searchProperties(data, new PropertyCallback() {
                     @Override
                     public void onSuccess(ArrayList<Property> results) {
                         mItems = results;

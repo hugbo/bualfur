@@ -1,4 +1,6 @@
-package hugbo.bualfur.storage;
+package hugbo.bualfur.services;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -8,7 +10,7 @@ import hugbo.bualfur.model.Property;
  * Created by stefan on 19/03/17.
  * Callback Interface.
  */
-public interface ServerCallback {
+public interface PropertyCallback {
 
     /**
      * Let's you add an onSuccess callback onto a function

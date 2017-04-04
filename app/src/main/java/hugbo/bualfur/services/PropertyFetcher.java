@@ -1,4 +1,4 @@
-package hugbo.bualfur.storage;
+package hugbo.bualfur.services;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import hugbo.bualfur.controller.NetworkController;
 import hugbo.bualfur.model.Property;
 
 /**
@@ -78,7 +77,7 @@ public class PropertyFetcher {
      * @param data the JSONObject that contains the search parameters
      * @param callback success callback to return the results
      */
-    public void searchProperties(JSONObject data, final ServerCallback callback){
+    public void searchProperties(JSONObject data, final PropertyCallback callback){
         mProperties = new ArrayList<Property>();
 
         if(data == null){
