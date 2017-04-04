@@ -45,6 +45,7 @@
             android:value="@string/facebook_app_id" />
       <activity android:name=".controller.PropertyActivity"></activity>
       <activity android:name=".controller.PropertyListActivity"></activity>
+      <activity android:name=".controller.CreatePropertyActivity"></activity>
     </application>
 
 </manifest>
