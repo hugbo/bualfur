@@ -12,7 +12,7 @@ import java.util.UUID;
 
 import hugbo.bualfur.R;
 import hugbo.bualfur.model.Property;
-import hugbo.bualfur.services.PropertyFetcher;
+import hugbo.bualfur.services.PropertyService;
 
 /**
  * Created by oddgeir on 19.3.2017.
@@ -65,7 +65,7 @@ public class ViewPropertyFragment extends Fragment {
     }
 
     /**
-     * Invokes the PropertyFetcher to get the specified property.
+     * Invokes the PropertyService to get the specified property.
      * Updates the layout to include the property information.
      * @param view
      * @param propertyId
@@ -73,7 +73,7 @@ public class ViewPropertyFragment extends Fragment {
     private void updateView(View view, UUID propertyId){
 
 
-        mPropertyToView = PropertyFetcher.getInstance(getActivity()).getProperty(propertyId);
+        mPropertyToView = PropertyService.getInstance(getActivity()).getProperty(propertyId);
 
 
         // Assign handlers to all TextViews in the layout that need to be altered

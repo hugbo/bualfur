@@ -14,7 +14,7 @@ import java.util.UUID;
 
 import hugbo.bualfur.R;
 import hugbo.bualfur.model.Property;
-import hugbo.bualfur.services.PropertyFetcher;
+import hugbo.bualfur.services.PropertyService;
 
 /**
  * Created by Hildur on 4/4/2017.
@@ -42,7 +42,7 @@ public class PropertyPagerActivity extends FragmentActivity {
                 .getSerializableExtra(EXTRA_PROPERTY_ID);
 
         mViewPager = (ViewPager) findViewById(R.id.activity_property_pager_view_pager);
-        mProperties = PropertyFetcher.getInstance(this).getProperties();
+        mProperties = PropertyService.getInstance(this).getProperties();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
             @Override
@@ -61,5 +61,13 @@ public class PropertyPagerActivity extends FragmentActivity {
                 break;
             }
         }
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = PropertyListActivity.newIntent(this);
+
+        startActivity(intent);
     }
 }

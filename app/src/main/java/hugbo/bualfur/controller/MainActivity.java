@@ -7,6 +7,10 @@ import android.util.Log;
 
 import com.facebook.AccessToken;
 
+import hugbo.bualfur.model.User;
+import hugbo.bualfur.services.SessionManager;
+import hugbo.bualfur.services.UserCallback;
+
 public class MainActivity extends SingleFragmentActivity {
 
     @Override
@@ -17,7 +21,12 @@ public class MainActivity extends SingleFragmentActivity {
         if(AccessToken.getCurrentAccessToken() == null) {
             launchLoginActivty();
         } else {
-            createFragment();
+            SessionManager.getInstance(getApplicationContext()).getLoggedInUser(new UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    createFragment();
+                }
+            });
         }
     }
 

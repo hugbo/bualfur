@@ -1,5 +1,6 @@
 package hugbo.bualfur.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -15,6 +17,10 @@ import java.util.ArrayList;
 
 import hugbo.bualfur.R;
 import hugbo.bualfur.model.Property;
+import hugbo.bualfur.model.User;
+import hugbo.bualfur.services.PropertyService;
+import hugbo.bualfur.services.SessionManager;
+import hugbo.bualfur.services.UserCallback;
 
 /**
  * Created by oddgeir on 3.4.2017.
@@ -26,12 +32,31 @@ public class CreatePropertyFragment extends Fragment {
     private static ArrayList<ImageView> mCurrentPhotos;
     private Button mSaveButton;
     private Spinner mTypeSpinner;
+    private String mServerId;
+    private EditText mAddress;
+    private EditText mZipcode;
+    private EditText mCity;
+    private EditText mPrice;
+    private EditText mSize;
+    private EditText mNumBedrooms;
+    private EditText mNumBathrooms;
+    private Spinner mPropertyType;
+    private User mCurrentUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_property, container, false);
 
         mSaveButton = (Button) view.findViewById(R.id.create_property_button);
+        mAddress = (EditText) view.findViewById(R.id.new_property_address);
+        mZipcode = (EditText) view.findViewById(R.id.new_property_zipcode);
+        mCity = (EditText) view.findViewById(R.id.new_property_city);
+        mPrice = (EditText)view.findViewById(R.id.new_property_price);
+        mSize = (EditText)view.findViewById(R.id.new_property_size);
+        mNumBedrooms = (EditText)view.findViewById(R.id.new_property_bedrooms);
+        mNumBathrooms = (EditText)view.findViewById(R.id.new_property_bathrooms);
+        mPropertyType = (Spinner) view.findViewById(R.id.new_property_houseType);
+
 
         mSaveButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -61,20 +86,40 @@ public class CreatePropertyFragment extends Fragment {
     }
 
     public void createProperty(View view) {
-        String mServerId = null;
-        String mAddress = view.findViewById(R.id.new_property_address).toString();
-        int mZipcode = Integer.parseInt(view.findViewById(R.id.new_property_zipcode).toString());
-        String mCity = view.findViewById(R.id.new_property_city).toString();
-        int mPrice = Integer.parseInt(view.findViewById(R.id.new_property_price).toString());
-        int mSize = Integer.parseInt(view.findViewById(R.id.new_property_size).toString());
-        double mLat = 12.34;
-        double mLon = 43.21;
-        int mNumBedrooms = Integer.parseInt(view.findViewById(R.id.new_property_bedrooms).toString());
-        int mNumBathrooms = Integer.parseInt(view.findViewById(R.id.new_property_bathrooms).toString());
-        String mPropertyType = view.findViewById(R.id.new_property_houseType).toString();
+        double mLat = 64.139707;
+        double mLon = -21.950430;
 
-        Property newProperty = new Property(mServerId, mAddress, mZipcode, mCity,
-                mPrice, mSize, mLat, mLon, mNumBedrooms, mNumBathrooms, mPropertyType);
+        String address = mAddress.getText().toString();
+        int zipcode = Integer.valueOf(mZipcode.getText().toString());
+        String city = mCity.getText().toString();
+        int price = Integer.valueOf(mPrice.getText().toString());
+        int size = Integer.valueOf(mSize.getText().toString());
+        int numBedrooms = Integer.valueOf(mNumBathrooms.getText().toString());
+        int numBathrooms = Integer.valueOf(mNumBathrooms.getText().toString());
+        String propertyType = mPropertyType.getSelectedItem().toString();
+
+        final Property newProperty = new Property(null, address, zipcode, city, price, size, mLat, mLon, numBedrooms, numBathrooms, propertyType);
+
+
+        mCurrentUser = SessionManager.getInstance(getActivity()).getCurrentUser();
+
+        if (mCurrentUser == null){
+            SessionManager.getInstance(getActivity()).getLoggedInUser(new UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    mCurrentUser = user;
+                    PropertyService.getInstance(getActivity()).postPropertyToServer(newProperty, mCurrentUser);
+                }
+            });
+        } else {
+            PropertyService.getInstance(getActivity()).postPropertyToServer(newProperty, mCurrentUser);
+        }
+
+
+        Intent intent = PropertyPagerActivity.newIntent(getActivity(), newProperty.getmId());
+
+        startActivity(intent);
+
     }
 
 }
