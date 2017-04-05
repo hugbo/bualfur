@@ -25,6 +25,7 @@
     <string name="min_price">Enter min price</string>
     <string name="max_price">Enter max price</string>
     <string name="zip_code_text">Zip code</string>
+    <string name="create_button_text">Create property</string>
     <string-array name="zip_code_array">
         <item>101</item>
         <item>103</item>
@@ -87,5 +88,6 @@
     <string name="view_square_meters">Square meters</string>
     <string name="view_city">City</string>
     <string name="view_zip_code">Zip code</string>
+
 
 </resources>
