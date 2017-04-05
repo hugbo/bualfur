@@ -13,67 +13,37 @@
         android:layout_height="wrap_content"
         android:padding="6dp"
         android:text="@string/search_text"
-        android:gravity="center"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/zip_code_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:text="@string/zip_code_text"
-        android:textStyle="bold"/>
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-        <Spinner
-            android:id="@+id/zip_code_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/zip_code_array"
-            android:padding="4dp"/>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/price_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/price_range_text"
-        android:padding="4dp"
+        android:gravity="left"
         android:textStyle="bold"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/rent_min_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="4dp"
-            android:hint="@string/min_price"/>
-        <TextView
-            android:id="@+id/price_range_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/to_search_text"
-            android:textStyle="bold"
-            android:padding="4dp"/>
-        <EditText
-            android:id="@+id/rent_max_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:hint="@string/max_price"
-            android:padding="4dp"/>
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:orientation="horizontal"
+        android:weightSum="1">
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingRight="74dp">
+            <TextView
+                android:id="@+id/zip_code_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/zip_code_text"
+                android:textStyle="bold"/>
+            <Spinner
+                android:id="@+id/zip_code_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/zip_code_array"
+                android:layout_below="@+id/zip_code_text_view"
+                android:padding="4dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            >
 
             <TextView
                 android:id="@+id/range_number_of_rooms_text_view"
@@ -109,7 +79,46 @@
                 android:layout_toEndOf="@id/number_of_rooms_text_view"
                 android:entries="@array/no_of_rooms_array"
                 android:padding="4dp"/>
+
         </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_range_text"
+        android:padding="4dp"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/rent_min_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:hint="@string/min_price"/>
+        <TextView
+            android:id="@+id/price_range_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_search_text"
+            android:textStyle="bold"
+            android:padding="4dp"/>
+        <EditText
+            android:id="@+id/rent_max_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="@string/max_price"
+            android:padding="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -149,32 +158,23 @@
                 android:layout_toEndOf="@id/size_text_view"
                 android:entries="@array/size_array"
                 android:padding="4dp"/>
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="24dp"
+                android:layout_toRightOf="@id/max_size_spinner"
+                android:text="@string/search_button_text"/>
         </RelativeLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/search_button_text"/>
-
     <Button
         android:id="@+id/map_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/map_button_text" />
-
-        <Button
-            android:id="@+id/create_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="CREATE" />
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:text="@string/map_button_text"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/property_recycler_view"
@@ -183,4 +183,3 @@
         android:layout_gravity="bottom" />
 
 </LinearLayout>
-

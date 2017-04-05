@@ -98,6 +98,9 @@ public class PropertyListFragment extends Fragment {
         mMaxSizeSpinner = (Spinner) view.findViewById(R.id.max_size_spinner);
         mCreatePropertyButton = (Button) view.findViewById(R.id.create_button);
 
+        mMaxNumRoomsSpinner.setSelection(6);
+        mMaxSizeSpinner.setSelection(7);
+
 
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
