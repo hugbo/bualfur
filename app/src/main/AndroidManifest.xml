@@ -51,6 +51,7 @@
 
       <activity android:name=".controller.PropertyListActivity"></activity>
       <activity android:name=".controller.CreatePropertyActivity"></activity>
+      <activity android:name=".controller.CreateMessageUsersActivity"></activity>
     </application>
 
 </manifest>

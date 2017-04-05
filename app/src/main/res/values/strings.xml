@@ -77,6 +77,7 @@
     <string name="choose_size_range">Square meters</string>
     <string name="number_of_rooms">Number of rooms</string>
     <string name="map_button_text">See Properties on Map</string>
+    <string name="messaging_button_text">Message users</string>
 
     <!-- fragment_property.xml layout-->
     <string name="view_address_text">Address</string>
