@@ -21,11 +21,11 @@
     </string-array>
 
     <!-- fragment_property_list.xml layout -->
-    <string name="search_text">Property search</string>
-    <string name="min_price">Enter min price</string>
-    <string name="max_price">Enter max price</string>
-    <string name="zip_code_text">Zip code</string>
-    <string name="create_button_text">Create property</string>
+    <string name="search_text">Leit</string>
+    <string name="min_price">Veldu lágmark</string>
+    <string name="max_price">Veldu hámark</string>
+    <string name="zip_code_text">Póstnúmer</string>
+    <string name="create_button_text">Auglýsa eign</string>
     <string-array name="zip_code_array">
         <item>101</item>
         <item>103</item>
@@ -71,23 +71,23 @@
         <item>350</item>
         <item>400</item>
     </string-array>
-    <string name="search_button_text">Search</string>
-    <string name="price_range_text">Price range</string>
-    <string name="to_search_text">to</string>
-    <string name="choose_size_range">Square meters</string>
-    <string name="number_of_rooms">Number of rooms</string>
-    <string name="map_button_text">See Properties on Map</string>
+    <string name="search_button_text">Leita</string>
+    <string name="price_range_text">Verðbil</string>
+    <string name="to_search_text">til</string>
+    <string name="choose_size_range">Fermetrar</string>
+    <string name="number_of_rooms">Fjöldi herbergja</string>
+    <string name="map_button_text">Sjá eignir á korti</string>
 
     <!-- fragment_property.xml layout-->
-    <string name="view_address_text">Address</string>
-    <string name="view_price_text">Price</string>
-    <string name="view_description_text">Description</string>
-    <string name="view_listing_type">Type</string>
-    <string name="view_no_bathrooms">Number of bathrooms</string>
-    <string name="view_number_of_bedrooms">Number of bedrooms</string>
-    <string name="view_square_meters">Square meters</string>
-    <string name="view_city">City</string>
-    <string name="view_zip_code">Zip code</string>
+    <string name="view_address_text">Heimilisfang</string>
+    <string name="view_price_text">Leiguerð</string>
+    <string name="view_description_text">Lýsing</string>
+    <string name="view_listing_type">Tegund húsnæðis</string>
+    <string name="view_no_bathrooms">Fjöldi baðherbergja</string>
+    <string name="view_number_of_bedrooms">Fjöldi svefnherbergja</string>
+    <string name="view_square_meters">Fermetrar</string>
+    <string name="view_city">Bær/Borg</string>
+    <string name="view_zip_code">Póstnúmer</string>
 
 
 </resources>
