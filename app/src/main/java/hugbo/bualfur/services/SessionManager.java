@@ -35,6 +35,8 @@ public class SessionManager {
     private static SessionManager mSessionManager;
 
     private String devURL = "http://192.168.122.1:3000/sessions/get_user/";
+
+
     private String prodURL = "http://hugbo-verkefni1-dev.herokuapp.com/sessions/get_user";
     private static final String TAG = "SessionManager";
 
@@ -82,11 +84,12 @@ public class SessionManager {
             Log.e(TAG, "getUserFromServer: "+error.toString() );
         }
 
+        Log.i(TAG, "getUserFromServer: "+graphData.toString());
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, devURL, graphData, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, prodURL, graphData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //todo
+
                 Log.i(TAG, "Bualfur response"+response.toString());
 
                 try {

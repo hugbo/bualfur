@@ -8,7 +8,7 @@ import android.util.Log;
 import java.util.UUID;
 
 import hugbo.bualfur.model.Property;
-import hugbo.bualfur.services.PropertyFetcher;
+import hugbo.bualfur.services.PropertyService;
 
 /**
  * Created by oddgeir on 19.3.2017.
@@ -38,7 +38,7 @@ public class PropertyActivity extends SingleFragmentActivity {
 
         UUID propertyId = (UUID) getIntent().getSerializableExtra(EXTRA_PROPERTY_ID);
         Log.i("PropetyActivity", propertyId.toString());
-        Property tmpProperty = PropertyFetcher.getInstance(this).getProperty(propertyId);
+        Property tmpProperty = PropertyService.getInstance(this).getProperty(propertyId);
         Log.i("PropAct", tmpProperty.getmAddress());
         return ViewPropertyFragment.newInstance(propertyId);
     };
