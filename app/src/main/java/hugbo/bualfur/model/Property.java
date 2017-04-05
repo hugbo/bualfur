@@ -22,6 +22,16 @@ public class Property {
     private double mLon;
     private int mNumBedrooms;
     private int mNumBathrooms;
+
+    public String getmDescription() {
+        return mDescription;
+    }
+
+    public void setmDescription(String mDescription) {
+        this.mDescription = mDescription;
+    }
+
+    private String mDescription;
     private String mPropertyType;
 
 

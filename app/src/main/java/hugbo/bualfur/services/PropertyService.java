@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import hugbo.bualfur.model.Property;
+import hugbo.bualfur.model.User;
 
 /**
  * Created by stefan on 18/03/17.
@@ -24,18 +25,19 @@ import hugbo.bualfur.model.Property;
  * from within the app or from a server
  */
 
-public class PropertyFetcher {
+public class PropertyService {
 
     //Instance variables
-    private final String TAG = "PropertyFetcher";
-    private static PropertyFetcher mPropertyFetcherInstance;
+    private final String TAG = "PropertyService";
+    private static PropertyService mPropertyServiceInstance;
     private ArrayList<Property> mProperties;
-    private String developmentURL = "http://192.168.0.101:3000/properties/search";
+    private String developmentURL = "http:// 192.168.0.101:3000/properties/search";
     private String productionURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/search";
     private Context mCtx;
+    private User mCurrentUser;
 
     //Constructor
-    private PropertyFetcher(Context context){
+    private PropertyService(Context context){
             mCtx = context;
     }
 
@@ -172,15 +174,65 @@ public class PropertyFetcher {
     }
 
 
-    /**
-     * Fetches an instance of PropertyFetcher if it exists or creates it.
-     * @param context
-     * @return PropertyFetcher instance
-     */
-    public static synchronized PropertyFetcher getInstance(Context context){
-        if(mPropertyFetcherInstance == null){
-            mPropertyFetcherInstance = new PropertyFetcher(context);
+
+    public void postPropertyToServer(Property property, User user){
+
+        mCurrentUser = user;
+        String postURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/create_android";
+//        String postURL = "http://192.168.122.1:3000/properties/create_android";
+
+        Log.i(TAG, "postPropertyToServer: "+mCurrentUser.getmFirstName());
+
+        JSONObject propertyData = new JSONObject();
+        JSONObject parent = new JSONObject();
+        try {
+            propertyData.put("address", property.getmAddress());
+            propertyData.put("zipcode", property.getmZipcode());
+            propertyData.put("city", property.getmCity());
+            propertyData.put("price", property.getmPrice());
+            propertyData.put("size", property.getmSize());
+            propertyData.put("num_bedrooms", property.getmNumBedrooms());
+            propertyData.put("num_bathrooms", property.getmNumBathrooms());
+            propertyData.put("property_type", property.getmPropertyType());
+            propertyData.put("lat", property.getmLat());
+            propertyData.put("lon", property.getmLon());
+            propertyData.put("description", property.getmDescription());
+            parent.put("id", mCurrentUser.getmFacebookId());
+            parent.put("property", propertyData);
+        } catch (JSONException error){
+            Log.e(TAG, "postPropertyToServer: "+error.toString() );
         }
-        return mPropertyFetcherInstance;
+
+        Log.i(TAG, "PostData "+parent.toString());
+
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, postURL, parent, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i(TAG, "onResponse: "+response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "onErrorResponse: "+error.toString());
+            }
+        });
+
+        NetworkController.getInstance(mCtx).addToRequestQueue(request);
+
+    }
+
+
+    /**
+     * Fetches an instance of PropertyService if it exists or creates it.
+     * @param context
+     * @return PropertyService instance
+     */
+    public static synchronized PropertyService getInstance(Context context){
+        if(mPropertyServiceInstance == null){
+            mPropertyServiceInstance = new PropertyService(context);
+        }
+        return mPropertyServiceInstance;
     }
 }

@@ -15,8 +15,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
-
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ import hugbo.bualfur.R;
 import hugbo.bualfur.model.Property;
 import hugbo.bualfur.model.User;
 import hugbo.bualfur.services.PropertyCallback;
-import hugbo.bualfur.services.PropertyFetcher;
+import hugbo.bualfur.services.PropertyService;
 import hugbo.bualfur.services.SessionManager;
 import hugbo.bualfur.services.UserCallback;
 
@@ -52,7 +50,7 @@ public class PropertyListFragment extends Fragment {
     private Spinner mMinSizeSpinner;
     private Spinner mMaxSizeSpinner;
     private User mCurrentUser;
-
+    private Button mCreatePropertyButton;
 
 
 
@@ -73,7 +71,7 @@ public class PropertyListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_property_list, container, false);
 
-        SessionManager sm = SessionManager.getInstance(getActivity());
+        SessionManager sm = SessionManager.getInstance(getContext());
 
         if (!sm.isUserAuthenticated()){
             sm.getLoggedInUser(new UserCallback() {
@@ -98,6 +96,7 @@ public class PropertyListFragment extends Fragment {
         mMaxRentEditText = (EditText) view.findViewById(R.id.rent_max_edit_text);
         mMinSizeSpinner = (Spinner) view.findViewById(R.id.min_size_spinner);
         mMaxSizeSpinner = (Spinner) view.findViewById(R.id.max_size_spinner);
+        mCreatePropertyButton = (Button) view.findViewById(R.id.create_button);
 
         mMaxNumRoomsSpinner.setSelection(6);
         mMaxSizeSpinner.setSelection(7);
@@ -132,7 +131,7 @@ public class PropertyListFragment extends Fragment {
                 tmp.put("search", searchJson);
                 searchJson = new JSONObject(tmp);
 
-                PropertyFetcher.getInstance(getActivity()).searchProperties(searchJson, new PropertyCallback() {
+                PropertyService.getInstance(getActivity()).searchProperties(searchJson, new PropertyCallback() {
                     @Override
                     public void onSuccess(ArrayList<Property> results) {
                         mItems = results;
@@ -144,6 +143,14 @@ public class PropertyListFragment extends Fragment {
             }
         });
 
+
+        mCreatePropertyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = CreatePropertyActivity.newIntent(getActivity());
+                startActivity(intent);
+            }
+        });
 
         mMapButton = (Button) view.findViewById(R.id.map_button);
 
@@ -226,9 +233,9 @@ public class PropertyListFragment extends Fragment {
         protected Void doInBackground(Void... params){
             try{
 
-                JSONObject data = PropertyFetcher.getInstance(getActivity()).defaultParameters();
+                JSONObject data = PropertyService.getInstance(getActivity()).defaultParameters();
 
-                PropertyFetcher.getInstance(getActivity()).searchProperties(data, new PropertyCallback() {
+                PropertyService.getInstance(getActivity()).searchProperties(data, new PropertyCallback() {
                     @Override
                     public void onSuccess(ArrayList<Property> results) {
                         mItems = results;

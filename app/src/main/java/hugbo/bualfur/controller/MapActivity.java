@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hugbo.bualfur.model.Property;
-import hugbo.bualfur.services.PropertyFetcher;
+import hugbo.bualfur.services.PropertyService;
 import hugbo.bualfur.R;
 
 import static hugbo.bualfur.R.id.map;
@@ -69,7 +69,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(final GoogleMap googleMap) {
 
 
-        ArrayList<Property> properties = PropertyFetcher.getInstance(this).getProperties();
+        ArrayList<Property> properties = PropertyService.getInstance(this).getProperties();
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 

@@ -20,6 +20,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import hugbo.bualfur.model.User;
+import hugbo.bualfur.services.SessionManager;
+import hugbo.bualfur.services.UserCallback;
+
 
 import hugbo.bualfur.R;
 
@@ -62,8 +66,26 @@ public class MainActivity extends AppCompatActivity {
         if(AccessToken.getCurrentAccessToken() == null) {
             launchLoginActivty();
         } else {
-            //createFragment();
-            setContentView(R.layout.activity_main);
+          
+           SessionManager.getInstance(getApplicationContext()).getLoggedInUser(new UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    initComponents();
+                }
+            });
+        }
+    }
+
+    private void loadNavHeader() {
+        // name, website
+        txtName.setText("Ravi Tamada");
+        txtWebsite.setText("<a href='http://www.androidhive.info'>www.androidhive.info</a>");
+
+    }
+  
+  
+  private void initComponents(){
+    setContentView(R.layout.activity_main);
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
@@ -102,16 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 CURRENT_TAG = TAG_HOME;
                 loadHomeFragment();
             }
-
-        }
-    }
-
-    private void loadNavHeader() {
-        // name, website
-        txtName.setText("Ravi Tamada");
-        txtWebsite.setText("<a href='http://www.androidhive.info'>www.androidhive.info</a>");
-
-    }
+  }
 
     private void loadHomeFragment() {
         // selecting appropriate nav menu item

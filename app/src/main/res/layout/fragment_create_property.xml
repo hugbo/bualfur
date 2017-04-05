@@ -96,10 +96,23 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"/>
 
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/property_bathrooms"/>
+
             <Spinner
                 android:id="@+id/new_property_houseType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:id="@+id/image_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
 
 
             <Button
