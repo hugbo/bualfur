@@ -71,12 +71,14 @@
         <item>350</item>
         <item>400</item>
     </string-array>
+
     <string name="search_button_text">Leita</string>
     <string name="price_range_text">Verðbil</string>
     <string name="to_search_text">til</string>
     <string name="choose_size_range">Fermetrar</string>
     <string name="number_of_rooms">Fjöldi herbergja</string>
     <string name="map_button_text">Sjá eignir á korti</string>
+    <string name="messaging_button_text">Skilaboð</string>
 
     <!-- fragment_property.xml layout-->
     <string name="view_address_text">Heimilisfang</string>
