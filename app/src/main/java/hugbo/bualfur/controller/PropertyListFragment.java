@@ -96,7 +96,6 @@ public class PropertyListFragment extends Fragment {
         mMaxRentEditText = (EditText) view.findViewById(R.id.rent_max_edit_text);
         mMinSizeSpinner = (Spinner) view.findViewById(R.id.min_size_spinner);
         mMaxSizeSpinner = (Spinner) view.findViewById(R.id.max_size_spinner);
-        mCreatePropertyButton = (Button) view.findViewById(R.id.create_button);
 
         mMaxNumRoomsSpinner.setSelection(6);
         mMaxSizeSpinner.setSelection(7);
@@ -142,16 +141,6 @@ public class PropertyListFragment extends Fragment {
 
             }
         });
-
-
-        mCreatePropertyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = CreatePropertyActivity.newIntent(getActivity());
-                startActivity(intent);
-            }
-        });
-
 
         mMapButton = (Button) view.findViewById(R.id.map_button);
 
