@@ -73,57 +73,58 @@ public class MainActivity extends AppCompatActivity {
 
         if(AccessToken.getCurrentAccessToken() == null) {
             launchLoginActivty();
-        } else {
+        }
 
-            setContentView(R.layout.activity_main);
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-            mHandler = new Handler();
+        mHandler = new Handler();
 
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            navigationView = (NavigationView) findViewById(R.id.nav_view);
-            fab = (FloatingActionButton) findViewById(R.id.fab);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
-            //Navigation view header
-            navHeader = navigationView.getHeaderView(0);
-            txtName = (TextView) navHeader.findViewById(R.id.name);
-            txtWebsite = (TextView) navHeader.findViewById(R.id.website);
-            imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
-            imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
+        //Navigation view header
+        navHeader = navigationView.getHeaderView(0);
+        txtName = (TextView) navHeader.findViewById(R.id.name);
+        txtWebsite = (TextView) navHeader.findViewById(R.id.website);
+        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
+        imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 
-            // load toolbar titles from string resources
-            activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
+        // load toolbar titles from string resources
+        activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    navItemIndex = 1;
-                    CURRENT_TAG = TAG_CREATE;
-                    loadHomeFragment();
-                }
-            });
-
-            // load nav menu header data
-            loadNavHeader();
-
-            // initializing navigation menu
-            setUpNavigationView();
-
-            if (savedInstanceState == null) {
-                navItemIndex = 0;
-                CURRENT_TAG = TAG_HOME;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navItemIndex = 1;
+                CURRENT_TAG = TAG_CREATE;
                 loadHomeFragment();
             }
+        });
 
+        // load nav menu header data
+        loadNavHeader();
 
-            SessionManager.getInstance(getApplicationContext()).getLoggedInUser(new UserCallback() {
-                @Override
-                public void onSuccess(User user) {
-                    //nothing
-                }
-            });
+        // initializing navigation menu
+        setUpNavigationView();
+
+        if (savedInstanceState == null) {
+            navItemIndex = 0;
+            CURRENT_TAG = TAG_HOME;
+            loadHomeFragment();
         }
+
+
+        SessionManager.getInstance(getApplicationContext()).getLoggedInUser(new UserCallback() {
+            @Override
+            public void onSuccess(User user) {
+                //nothing
+            }
+        });
+
+
     }
 
     private void loadNavHeader() {
