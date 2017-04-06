@@ -51,7 +51,6 @@ public class PropertyListFragment extends Fragment {
     private Spinner mMaxSizeSpinner;
     private User mCurrentUser;
     private Button mCreatePropertyButton;
-    private Button mMessageUsersButton;
 
 
 
@@ -98,7 +97,6 @@ public class PropertyListFragment extends Fragment {
         mMinSizeSpinner = (Spinner) view.findViewById(R.id.min_size_spinner);
         mMaxSizeSpinner = (Spinner) view.findViewById(R.id.max_size_spinner);
         mCreatePropertyButton = (Button) view.findViewById(R.id.create_button);
-        mMessageUsersButton = (Button) view.findViewById(R.id.messaging_button);
 
         mMaxNumRoomsSpinner.setSelection(6);
         mMaxSizeSpinner.setSelection(7);
@@ -154,13 +152,6 @@ public class PropertyListFragment extends Fragment {
             }
         });
 
-        mMessageUsersButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = CreateMessageUsersActivity.newIntent(getActivity());
-                startActivity(intent);
-            }
-        });
 
         mMapButton = (Button) view.findViewById(R.id.map_button);
 
