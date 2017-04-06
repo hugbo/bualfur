@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
-    private static final String TAG_PHOTOS = "photos";
+    private static final String TAG_CREATE = "photos";
     private static final String TAG_MOVIES = "movies";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     navItemIndex = 1;
-                    CURRENT_TAG = TAG_PHOTOS;
+                    CURRENT_TAG = TAG_CREATE;
                     loadHomeFragment();
                 }
             });
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_photos:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_PHOTOS;
+                        CURRENT_TAG = TAG_CREATE;
                         break;
                     default:
                         navItemIndex = 0;
