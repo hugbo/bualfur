@@ -67,8 +67,6 @@ public class ConversationsFragment extends Fragment {
             super(view);
             view.setClickable(true);
 
-            //mAddressTextView = (TextView) itemView.findViewById(R.id.property_address);
-            //mPriceTextView = (TextView) itemView.findViewById(R.id.property_price);
 
             view.setOnClickListener(this);
         }
