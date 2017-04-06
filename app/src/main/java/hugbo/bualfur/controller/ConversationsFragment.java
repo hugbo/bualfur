@@ -67,7 +67,6 @@ public class ConversationsFragment extends Fragment {
             super(view);
             view.setClickable(true);
 
-
             view.setOnClickListener(this);
         }
 
