@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 return profileFragment;
             case 3:
                 // Messages
-                return new ConversationsFragment();
+                return new CreateMessageUsersFragment();
             default:
                 return new PropertyListFragment();
         }
