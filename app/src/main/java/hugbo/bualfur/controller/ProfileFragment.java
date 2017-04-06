@@ -48,6 +48,7 @@ public class ProfileFragment extends Fragment {
         } else {
             updateView(view);
         }
+
         // Inflate the layout for this fragment
         return view;
     }
