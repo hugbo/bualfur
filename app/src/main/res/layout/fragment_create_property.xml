@@ -100,7 +100,7 @@
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/property_bathrooms"/>
+                android:text="@string/property_type"/>
 
             <Spinner
                 android:id="@+id/new_property_houseType"
@@ -108,10 +108,20 @@
                 android:layout_height="wrap_content"/>
 
 
-            <ImageView
-                android:id="@+id/image_1"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:text="Mynd"/>
+            <ImageView
+                android:id="@+id/new_property_image1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:id="@+id/new_property_camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_camera"/>
+
 
 
 

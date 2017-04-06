@@ -66,7 +66,7 @@ public class PropertyPagerActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed(){
-        Intent intent = PropertyListActivity.newIntent(this);
+        Intent intent = MainActivity.newIntent(this);
 
         startActivity(intent);
     }

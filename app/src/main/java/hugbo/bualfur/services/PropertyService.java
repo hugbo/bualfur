@@ -3,6 +3,7 @@ package hugbo.bualfur.services;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -12,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -178,8 +180,8 @@ public class PropertyService {
     public void postPropertyToServer(Property property, User user){
 
         mCurrentUser = user;
-        String postURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/create_android";
-//        String postURL = "http://192.168.122.1:3000/properties/create_android";
+//        String postURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/create_android";
+        String postURL = "http://192.168.122.1:3000/properties/create_android";
 
         Log.i(TAG, "postPropertyToServer: "+mCurrentUser.getmFirstName());
 
@@ -219,8 +221,15 @@ public class PropertyService {
             }
         });
 
+
         NetworkController.getInstance(mCtx).addToRequestQueue(request);
 
+    }
+
+
+    public File getPhotoFile(Property property){
+        File filesDir = mCtx.getFilesDir();
+        return new File(filesDir, property.getPhotoFilename());
     }
 
 

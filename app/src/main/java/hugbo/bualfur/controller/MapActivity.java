@@ -71,6 +71,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         ArrayList<Property> properties = PropertyService.getInstance(this).getProperties();
 
+        if (properties.size() == 0){
+            return;
+        }
+
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
         //Create markers
