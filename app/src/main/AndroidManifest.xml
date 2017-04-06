@@ -65,9 +65,10 @@
 
         <!-- <activity android:name=".controller.PropertyActivity"></activity> -->
 
-        <activity android:name=".controller.PropertyListActivity" />
-        <activity android:name=".controller.CreatePropertyActivity" />
-        <activity android:name=".controller.ProfileActivity" />
+      <activity android:name=".controller.CreatePropertyActivity"></activity>
+      <activity android:name=".controller.CreateMessageUsersActivity"></activity>
+      <activity android:name=".controller.PropertyListActivity" />
+      <activity android:name=".controller.ProfileActivity" />
     </application>
 
 </manifest>
