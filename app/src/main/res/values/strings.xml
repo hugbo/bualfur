@@ -90,7 +90,6 @@
     <string name="view_zip_code">Póstnúmer</string>
 
 
-
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -120,5 +119,8 @@
     <string name="action_logout">Skrá út</string>
     <string name="action_mark_all_read">Mark All as Read</string>
     <string name="privacy_policy">Annað</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

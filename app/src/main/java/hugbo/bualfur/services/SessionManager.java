@@ -62,10 +62,6 @@ public class SessionManager {
             }
         });
 
-
-
-
-
         Bundle parameters = new Bundle();
 
         parameters.putString("fields", "id, picture, first_name, last_name, gender, age_range, link" );
@@ -73,8 +69,44 @@ public class SessionManager {
         request.executeAsync();
     }
 
+    public void getUserFromID(String fbId, final UserCallback callback){
 
+        String devURL = "http://192.168.122.1:3000/profile/json"+fbId;
 
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, devURL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject userObject = response.getJSONObject("user");
+
+                    String firstName = userObject.getString("first_name");
+                    String lastName = userObject.getString("last_name");
+                    String gender = userObject.getString("gender");
+                    String ageRange = userObject.getString("age_range");
+                    String imageURL = userObject.getString("image_url");
+                    String facebookURL = userObject.getString("facebook_url");
+                    String phoneNumber = userObject.getString("phone_number");
+                    String personalInfo = userObject.getString("personal_info");
+                    String email = userObject.getString("email");
+                    String facebookId = userObject.getString("facebook_id");
+
+                    User user = new User(facebookId, firstName, lastName, ageRange, gender, email, phoneNumber, personalInfo, imageURL, facebookURL);
+
+                    callback.onSuccess(user);
+                } catch (JSONException error){
+                    Log.e(TAG, "onResponse: "+error.toString() );
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //
+            }
+        });
+
+        NetworkController.getInstance(mCtx).addToRequestQueue(request);
+    }
 
     public void getUserFromServer(JSONObject userdata, final UserCallback callback){
         JSONObject graphData = new JSONObject();

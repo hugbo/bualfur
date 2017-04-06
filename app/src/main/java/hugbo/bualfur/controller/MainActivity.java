@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private User mCurrentUser;
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         SessionManager.getInstance(getApplicationContext()).getLoggedInUser(new UserCallback() {
             @Override
             public void onSuccess(User user) {
-                //nothing
+                mCurrentUser = user;
             }
         });
 
@@ -190,9 +191,13 @@ public class MainActivity extends AppCompatActivity {
                 PropertyListFragment homeFragment = new PropertyListFragment();
                 return homeFragment;
             case 1:
-                // photos
+                // Create
                 CreatePropertyFragment photosFragment = new CreatePropertyFragment();
                 return photosFragment;
+            case 2:
+                // Profile
+                Log.i("TEST", "HELLLOOO");
+                return new ProfileFragment();
             default:
                 return new PropertyListFragment();
         }
@@ -225,6 +230,9 @@ public class MainActivity extends AppCompatActivity {
                         navItemIndex = 1;
                         CURRENT_TAG = TAG_CREATE;
                         break;
+                    case R.id.nav_movies:
+                        navItemIndex = 2;
+                        CURRENT_TAG = TAG_MOVIES;
                     default:
                         navItemIndex = 0;
                 }
