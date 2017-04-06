@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.UUID;
 
@@ -24,6 +25,10 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_USER_ID = "user_id";
     private static final String TAG = "ProfileFragment";
     private User mUserToView;
+    private TextView mUserName;
+    private TextView mUserPhone;
+    private TextView mUserEmail;
+    private TextView mUserAge;
 
     public static ProfileFragment newInstance(String serverID){
         Bundle args = new Bundle();
@@ -41,13 +46,14 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        if (mUserToView == null){
-            String serverID = (String) getArguments().getSerializable(ARG_USER_ID);
+        mUserName = (TextView) view.findViewById(R.id.user_name);
+        mUserPhone = (TextView) view.findViewById(R.id.user_phone);
+        mUserEmail = (TextView) view.findViewById(R.id.user_email);
+        mUserAge = (TextView) view.findViewById(R.id.user_age);
 
-            updateView(view, serverID);
-        } else {
-            updateView(view);
-        }
+        mUserToView = SessionManager.getInstance(getActivity()).getCurrentUser();
+
+        updateView(view);
 
         // Inflate the layout for this fragment
         return view;
@@ -62,21 +68,12 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void updateView(View view, String serverID){
-        SessionManager.getInstance(getActivity()).getUserFromID(serverID, new UserCallback(){
-            @Override
-            public void onSuccess(User user){
-                mUserToView = user;
-                Log.i(TAG, "onSuccess: "+user.getmFirstName());
-            }
-        });
-    }
-
     private void updateView(View view){
-        Log.i(TAG, "Helloooo!");
+        mUserName.setText(mUserToView.getmFirstName()+" "+mUserToView.getmLastName());
+        mUserPhone.setText(mUserToView.getmPhone());
+        mUserEmail.setText(mUserToView.getmEmail());
+        mUserAge.setText(mUserToView.getmAgeRange());
     }
-
-
 
 }
 

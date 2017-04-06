@@ -199,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
                 ProfileFragment profileFragment = new ProfileFragment();
                 Log.i("TEST", "HELLLOOO");
                 return profileFragment;
+            case 3:
+                // Messages
+                return new ConversationsFragment();
             default:
                 return new PropertyListFragment();
         }
@@ -234,6 +237,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_movies:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_MOVIES;
+                        break;
+                    case R.id.nav_notifications:
+                        navItemIndex = 3;
+                        CURRENT_TAG = TAG_NOTIFICATIONS;
                         break;
                     default:
                         navItemIndex = 0;

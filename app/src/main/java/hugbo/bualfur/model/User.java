@@ -124,6 +124,10 @@ public class User {
         return mInfo;
     }
 
+    public String getmAgeRange() { return mAgeRange; }
+
+    public String getmGender() { return mGender; }
+
     public ArrayList<Conversation> getmConversations() {
         return mConversations;
     }
