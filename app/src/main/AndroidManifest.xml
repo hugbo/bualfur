@@ -40,6 +40,15 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="hugbo.bualfur.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/files"></meta-data>
+        </provider>
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -50,7 +59,7 @@
 
 
       <activity android:name=".controller.PropertyListActivity"></activity>
-      <activity android:name=".controller.CreatePropertyActivity"></activity>
+      <activity android:name=".controller.CreatePropertyActivity"></activity>>
     </application>
 
 </manifest>

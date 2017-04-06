@@ -152,6 +152,7 @@ public class PropertyListFragment extends Fragment {
             }
         });
 
+
         mMapButton = (Button) view.findViewById(R.id.map_button);
 
         mMapButton.setOnClickListener(new View.OnClickListener(){

@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -221,6 +222,12 @@ public class PropertyService {
 
         NetworkController.getInstance(mCtx).addToRequestQueue(request);
 
+    }
+
+
+    public File getPhotoFile(Property property){
+        File filesDir = mCtx.getFilesDir();
+        return new File(filesDir, property.getPhotoFilename());
     }
 
 

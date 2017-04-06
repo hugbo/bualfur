@@ -66,6 +66,10 @@ public class Property {
         mPropertyType = propertyType;
     }
 
+    public Property(){
+        mId = UUID.randomUUID();
+    }
+
     //Getters and setters
 
     public void setmId(UUID mId) {
@@ -76,6 +80,9 @@ public class Property {
         this.mServerId = mServerId;
     }
 
+    public String getPhotoFilename(){
+        return "IMG_"+getmId().toString()+".jpg";
+    }
 
     public void setmAddress(String mAddress) {
         this.mAddress = mAddress;

@@ -1,5 +1,6 @@
 package hugbo.bualfur.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -57,8 +58,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
 
+
+    public static Intent newIntent(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+
+        return intent;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.v("PropertyListActivity", "protected created");
         // Check if user is logged in and start appropriate activity
@@ -66,26 +74,8 @@ public class MainActivity extends AppCompatActivity {
         if(AccessToken.getCurrentAccessToken() == null) {
             launchLoginActivty();
         } else {
-          
-           SessionManager.getInstance(getApplicationContext()).getLoggedInUser(new UserCallback() {
-                @Override
-                public void onSuccess(User user) {
-                    initComponents();
-                }
-            });
-        }
-    }
 
-    private void loadNavHeader() {
-        // name, website
-        txtName.setText("Ravi Tamada");
-        txtWebsite.setText("<a href='http://www.androidhive.info'>www.androidhive.info</a>");
-
-    }
-  
-  
-  private void initComponents(){
-    setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
@@ -124,7 +114,24 @@ public class MainActivity extends AppCompatActivity {
                 CURRENT_TAG = TAG_HOME;
                 loadHomeFragment();
             }
-  }
+
+
+            SessionManager.getInstance(getApplicationContext()).getLoggedInUser(new UserCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    //nothing
+                }
+            });
+        }
+    }
+
+    private void loadNavHeader() {
+        // name, website
+        txtName.setText("Ravi Tamada");
+        txtWebsite.setText("<a href='http://www.androidhive.info'>www.androidhive.info</a>");
+
+    }
+  
 
     private void loadHomeFragment() {
         // selecting appropriate nav menu item
