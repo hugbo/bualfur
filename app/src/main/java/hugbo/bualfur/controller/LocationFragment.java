@@ -57,6 +57,8 @@ public class LocationFragment extends SupportMapFragment{
                     }
                 })
                 .build();
+
+        checkPermissions();
     }
 
     @Override
@@ -113,6 +115,11 @@ public class LocationFragment extends SupportMapFragment{
         request.setNumUpdates(1);
         request.setInterval(0);
 
+
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_FINE_LOCATION);
+
+        Log.i(TAG, "findLoc: "+String.valueOf(permissionCheck));
+
         LocationServices.FusedLocationApi
                 .requestLocationUpdates(mClient, request, new com.google.android.gms.location.LocationListener() {
                     @Override
@@ -125,5 +132,13 @@ public class LocationFragment extends SupportMapFragment{
         int result = ContextCompat
                 .checkSelfPermission(getActivity(), LOCATION_PERMISSIONS[0]);
         return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void checkPermissions(){
+        if (hasLocationPermission()){
+            findLoc();
+        } else {
+            requestPermissions(LOCATION_PERMISSIONS, REQUEST_LOCATION_PERMISSIONS);
+        }
     }
 }

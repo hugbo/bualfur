@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.v("PropertyListActivity", "protected created");
         // Check if user is logged in and start appropriate activity
