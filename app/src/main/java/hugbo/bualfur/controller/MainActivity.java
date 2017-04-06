@@ -98,8 +98,9 @@ public class MainActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    navItemIndex = 1;
+                    CURRENT_TAG = TAG_PHOTOS;
+                    loadHomeFragment();
                 }
             });
 
@@ -127,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadNavHeader() {
         // name, website
-        txtName.setText("Ravi Tamada");
-        txtWebsite.setText("<a href='http://www.androidhive.info'>www.androidhive.info</a>");
+        txtName.setText("Búálfur fasteignaleit");
+        txtWebsite.setText("");
 
     }
   
@@ -340,13 +341,6 @@ public class MainActivity extends AppCompatActivity {
             fab.hide();
     }
 
-
-    /*
-    @Override
-    protected Fragment createFragment() {
-        Log.v("Main", "Fragment created");
-        return new PropertyListFragment();
-    }*/
 
     public void launchLoginActivty(){
         Intent intent = new Intent(this, LoginActivity.class);

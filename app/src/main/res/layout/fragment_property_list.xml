@@ -3,7 +3,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_container"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="10dp">
@@ -44,7 +44,6 @@
         <RelativeLayout
             android:layout_width="153dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="35dp"
             >
 
             <TextView

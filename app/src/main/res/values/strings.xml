@@ -101,7 +101,7 @@
     <string name="nav_home">Heim</string>
     <string name="nav_photos">Ný eign</string>
     <string name="nav_movies">Prófill</string>
-    <string name="nav_notifications">Notifications</string>
+    <string name="nav_notifications">Tilkynningar</string>
     <string name="nav_settings">Stillingar</string>
     <string name="nav_about_us">Um okkur</string>
 
@@ -119,6 +119,6 @@
     <string name="action_clear_all">Hreinsa</string>
     <string name="action_logout">Skrá út</string>
     <string name="action_mark_all_read">Mark All as Read</string>
-    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy">Annað</string>
 
 </resources>
