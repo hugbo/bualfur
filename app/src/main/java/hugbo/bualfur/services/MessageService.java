@@ -3,6 +3,7 @@ package hugbo.bualfur.services;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import hugbo.bualfur.R;
 import hugbo.bualfur.model.Conversation;
 import hugbo.bualfur.model.Message;
 import hugbo.bualfur.model.User;
@@ -42,7 +44,8 @@ public class MessageService {
 
     public void getAllMessagesForUser(User user, final MessageCallback callback){
         mConversations = new ArrayList<Conversation>();
-        String devURL = "http://192.168.1.36:3000/conversations/index_json";
+        String devURL = "http://192.168.122.1:3000/conversations/index_json";
+        String prodURL = "https://hugbo-verkefni1-dev.herokuapp.com/conversations/index_json";
         JSONObject data = new JSONObject();
 
 
@@ -54,7 +57,7 @@ public class MessageService {
 
 
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, devURL, data, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, prodURL, data, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -106,6 +109,7 @@ public class MessageService {
 
                 } catch (JSONException e) {
                     Log.e(TAG, "onResponse: " + e.getStackTrace() );
+                    Toast.makeText(mCtx, R.string.no_messages_error, Toast.LENGTH_SHORT).show();
                 }
                 Log.i(TAG, "Conversations");
                 Log.i(TAG, mConversations.get(0).getmMessages().get(0).getmBody());
@@ -115,6 +119,7 @@ public class MessageService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "onErrorResponse: " + error.toString());
+                Toast.makeText(mCtx, R.string.no_messages_error, Toast.LENGTH_SHORT).show();
             }
         });
 

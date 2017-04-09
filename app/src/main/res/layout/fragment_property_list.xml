@@ -6,7 +6,8 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="10dp">
+    android:paddingLeft="10dp"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/search_text_view"
@@ -194,6 +195,7 @@
         android:id="@+id/property_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="197dp"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom"
+        android:layout_weight="0.91" />
 
 </LinearLayout>

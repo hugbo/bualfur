@@ -50,21 +50,33 @@ public class CreateMessageUsersFragment extends Fragment {
                 @Override
                 public void onSuccess(User user) {
                     mCurrentUser = user;
+                    MessageService.getInstance(getActivity()).getAllMessagesForUser(mCurrentUser, new MessageCallback() {
+                        @Override
+                        public void onSuccess(ArrayList<Conversation> conversations) {
+                            mItems = conversations;
+                            for (Conversation c : conversations){
+                                Log.i(TAG, "List created");
+                            }
+
+                            updateUI();
+                        }
+                    });
+
+                }
+            });
+        } else {
+            MessageService.getInstance(getActivity()).getAllMessagesForUser(mCurrentUser, new MessageCallback() {
+                @Override
+                public void onSuccess(ArrayList<Conversation> conversations) {
+                    mItems = conversations;
+                    for (Conversation c : conversations){
+                        Log.i(TAG, "List created");
+                    }
+
+                    updateUI();
                 }
             });
         }
-
-        MessageService.getInstance(getActivity()).getAllMessagesForUser(mCurrentUser, new MessageCallback() {
-            @Override
-            public void onSuccess(ArrayList<Conversation> conversations) {
-                mItems = conversations;
-                for (Conversation c : conversations){
-                    Log.i(TAG, "List created");
-                }
-
-                updateUI();
-            }
-        });
     }
 
     @Nullable

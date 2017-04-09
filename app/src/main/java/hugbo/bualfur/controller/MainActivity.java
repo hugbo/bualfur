@@ -28,6 +28,7 @@ import hugbo.bualfur.services.UserCallback;
 import hugbo.bualfur.R;
 
 import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -332,6 +333,9 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();
+            LoginManager.getInstance().logOut();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
             return true;
         }
 

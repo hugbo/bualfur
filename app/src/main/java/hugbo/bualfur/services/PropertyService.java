@@ -33,7 +33,7 @@ public class PropertyService {
     private final String TAG = "PropertyService";
     private static PropertyService mPropertyServiceInstance;
     private ArrayList<Property> mProperties;
-    private String developmentURL = "http:// 192.168.0.101:3000/properties/search";
+//    private String developmentURL = "http://192.168.122.1:3000/properties/search";
     private String productionURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/search";
     private Context mCtx;
     private User mCurrentUser;
@@ -180,8 +180,8 @@ public class PropertyService {
     public void postPropertyToServer(Property property, User user){
 
         mCurrentUser = user;
-//        String postURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/create_android";
-        String postURL = "http://192.168.122.1:3000/properties/create_android";
+        String postURL = "https://hugbo-verkefni1-dev.herokuapp.com/properties/create_android";
+//        String postURL = "http://192.168.122.1:3000/properties/create_android";
 
         Log.i(TAG, "postPropertyToServer: "+mCurrentUser.getmFirstName());
 
